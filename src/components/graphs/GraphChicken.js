@@ -38,17 +38,18 @@ export default class GraphChicken extends Component {
       if(chicken_age >= this.props.data.eggsMaturity) {
         v_eggs = ( n_of_chickens / this.props.data.chickens ) * this.props.data.eggs * this.props.data.eggsPrice;
       }
-      console.log(n_of_chickens);
-      console.log(this.props.data.chickens);
-      console.log(this.props.data.eggsPrice);
+      // console.log(n_of_chickens);
+      // console.log(this.props.data.chickens);
+      // console.log(this.props.data.eggsPrice);
       values[2].push(v_eggs);
       //******************Total
       total += v_chickens+v_staff_area+v_eggs;
       values[3].push(total);
 
-      n_of_chickens = Math.ceil(n_of_chickens * ((100 - this.props.data.deathRate) / 100));
+      // deathRate commes as int => 200 for 2%
+      n_of_chickens = Math.ceil(n_of_chickens * ((100 - this.props.data.deathRate/100) / 100));
       console.log("#: ",n_of_chickens);      
-      console.log("Age: ",chicken_age);      
+      // console.log("Age: ",chicken_age);      
       chicken_age = (( chicken_age + 1 ) % this.props.data.chickenMaturity);
     }
     
@@ -150,9 +151,9 @@ export default class GraphChicken extends Component {
           <label className="col-sm-4 col-form-label">Weekly Mortality Rate (%)</label>
           <div className="col-sm-8 row">
             <input type="range" className="form-control-range" name="deathRate" 
-              value={this.props.data.deathRate} max="3" min = "0"
+              value={this.props.data.deathRate} max="200" min = "0"
               onChange={this.props.onGraphSettingsChange} />
-            <div>{this.props.data.deathRate+' %'}</div>
+            <div>{this.props.data.deathRate/100+' %'}</div>
           </div>
         </div>
         <div className="form-group row">

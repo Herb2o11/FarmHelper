@@ -1,44 +1,59 @@
 import React, { Component } from 'react';
 import GraphChicken from '../graphs/GraphChicken';
+import * as CalculatorsAPI from '../../api/calculators';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLockOpen, faLock } from '@fortawesome/free-solid-svg-icons';
+import { parse } from '@fortawesome/fontawesome-svg-core';
 
 
 export default class CalcChicken extends Component {
   state = {
-    chickens: 500,
+    chickens: 0,
     area: 0,
     food: 0,
     eggs: 0,
     lockedfields: [false,false,false,false],
     showGraph : true,
     /** Graph State */
-    chickPrice: 1.00,
-    chickenPrice: 4.00,
-    foodPrice: 1.00,
-    eggsPrice: 0.75,
-    rent: 50.00,
-    staff: 75.00,
-    chickenMaturity : 20,
-    eggsMaturity: 7,
-    deathRate: 2,
+    chickPrice: 0,
+    chickenPrice: 0,
+    foodPrice: 0,
+    eggsPrice: 0,
+    rent: 0,
+    staff: 0,
+    chickenMaturity : 0,
+    eggsMaturity: 0,
+    deathRate: 0,
     period: 12
   }
 
-  componentDidMount = () => {
-    // This is just for the initial setup! REMOVE Later
+  componentDidMount = async () => {
+    if(this.props.params.id !== undefined && parseInt(this.props.params.id) > 0) {
+      const calc = await CalculatorsAPI.getEggChickenCalculator(parseInt(this.props.params.id));
+      this.setState(calc);
+    } 
+    // Updating Chicken Dependent Values
     this.setState(this.adjustValues('chickens', this.state.chickens));
   }
   
   onGraphSettingsChange = (e) => {
     const { name, value } = e.target;
-    this.setState({[name]: parseInt(value)});
+    let parsed = parseFloat(value);
+    if(value.includes('.') && !parsed.toString().includes('.')) {
+      parsed = parsed.toString() + ".";
+    }
+    if(isNaN(parsed)) {
+      this.setState({[name]: 0});
+    } else {
+      this.setState({[name]: value});
+
+    }
   }
 
   handleForm = (e) => {
     const { name, value } = e.target
     let parsed_value =  parseFloat(value); // Parsing
-    console.log(parsed_value)
+    //console.log(parsed_value)
     if(Number.isNaN(parsed_value)) {
       this.setState(this.adjustValues(name, 0));
     } else {
@@ -78,8 +93,8 @@ export default class CalcChicken extends Component {
     }
     const newState = {};
     if(!this.state.lockedfields[0]) { newState.chickens = Math.ceil(chickens) };
-    if(!this.state.lockedfields[1]) { newState.area = Math.round(((chickens * relations[1]) + Number.EPSILON) * 100) / 100 };
-    if(!this.state.lockedfields[2]) { newState.food = Math.round(((chickens * relations[2]) + Number.EPSILON) * 100) / 100 };
+    if(!this.state.lockedfields[1]) { newState.area = Math.ceil(chickens * relations[1]) };
+    if(!this.state.lockedfields[2]) { newState.food = Math.ceil(chickens * relations[2]) };
     if(!this.state.lockedfields[3]) { newState.eggs = Math.ceil(chickens * relations[3]) };
     return newState;
   }

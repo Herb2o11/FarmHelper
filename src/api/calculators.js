@@ -1,59 +1,35 @@
-export async function getChickenCalculators() {
+export async function getCalculators() {
  
   try {
     const response = {
       data : [
         {
-          chickens: 500,
-          area: 0,
-          food: 0,
-          eggs: 0,
-          lockedfields: [false,false,false,false],
-          chickPrice: 1.00,
-          chickenPrice: 4.00,
-          foodPrice: 1.00,
-          eggsPrice: 0.75,
-          rent: 50.00,
-          staff: 75.00,
-          chickenMaturity : 20,
-          eggsMaturity: 7,
-          deathRate: 2,
-          period: 12
+          id: 1,
+          kind: 'chicken',
+          name: 'Main project',
+          animals: 500,
         },
         {
-          chickens: 400,
-          area: 0,
-          food: 0,
-          eggs: 0,
-          lockedfields: [false,false,false,false],
-          chickPrice: 1.00,
-          chickenPrice: 4.00,
-          foodPrice: 1.00,
-          eggsPrice: 0.75,
-          rent: 50.00,
-          staff: 75.00,
-          chickenMaturity : 20,
-          eggsMaturity: 7,
-          deathRate: 2,
-          period: 24
+          id: 2,
+          kind: 'chicken',
+          name: 'Kelowna Test',
+          animals: 400,
         }
       ]
     }
+    console.log("Returning", response.data);
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export async function signUp(firstName, lastName, username, password) {
-  // const details = {
-  //     username: username,
-  //     password: password,
-  //     first_name : firstName,
-  //     last_name : lastName
-  // };
+export async function getEggChickenCalculator(id) {
+  const details = {
+    id: id,
+  };
 
-  // try {
+  try {
   //   let response = await axios.post('/api/signup', qs.stringify(details), {
   //     headers: {
   //       'Content-Type': 'application/x-www-form-urlencoded'
@@ -62,9 +38,27 @@ export async function signUp(firstName, lastName, username, password) {
     /**
      * Temp!!! REMOVE-ME
      */
-    let response = {"data": { "token": 'XXAUTHENTICATEDXXX'}};
-     return response.data.token;
-  // } catch (error) {
-  //   throw error;
-  // }
+  let response = {
+    "data": {
+      chickens: 400,
+      area: 0,
+      food: 0,
+      eggs: 0,
+      lockedfields: [false,false,false,false],
+      chickPrice: 1.00,
+      chickenPrice: 4.00,
+      foodPrice: 1.00,
+      eggsPrice: 0.75,
+      rent: 50.00,
+      staff: 75.00,
+      chickenMaturity : 20,
+      eggsMaturity: 7,
+      deathRate: 2,
+      period: 12
+    }
+  };
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
 };

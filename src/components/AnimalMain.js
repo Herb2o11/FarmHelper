@@ -27,7 +27,7 @@ export default class AnimalMain extends Component {
           <div className="row">
             <div className="col">
               <Suspense fallback={<Spinner />}>
-                <Calculator />
+                <Calculator params={this.props.params} />
               </Suspense>
             </div>
           </div>

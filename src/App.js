@@ -22,7 +22,7 @@ function App() {
           <PublicRoute exact path="/" component={Home} />
           <PublicRoute exact path="/about" component={About} />
           <PublicRoute exact path="/login" component={Login} />
-          <PrivateRoute exact path="/calc/:animal" component={AnimalMain} />
+          <PrivateRoute exact path="/calc/:animal/:id?" component={AnimalMain} />
         </Switch>
       </Router>
   );
