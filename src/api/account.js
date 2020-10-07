@@ -1,3 +1,5 @@
+import axios from "axios";
+import qs from "qs"
 
 export function isAuthenticated() {
   const logged = localStorage.getItem('AUTH_TOKEN');
@@ -19,20 +21,20 @@ export async function logIn(username, password) {
   };
 
   try {
-    // let response = await axios.post('/api/login', qs.stringify(details), {
-    //   headers: {
-    //     'Content-Type': 'application/x-www-form-urlencoded'
-    //   }
-    // });
+    let response = await axios.post('/login', qs.stringify(details), {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    });
     /**
      * Temp!!! REMOVE-ME
      */
-    const response = {}
-    if(details.password) {
-      response.data = { "token": 'XXAUTHENTICATEDXXX'};
-    } else {
-      response.data = { "token": false};
-    }
+    // const response = {}
+    // if(details.password) {
+    //   response.data = { "token": 'XXAUTHENTICATEDXXX'};
+    // } else {
+    //   response.data = { "token": false};
+    // }
     localStorage.setItem('AUTH_TOKEN', response.data.token);
     return response.data.token;
   } catch (error) {
