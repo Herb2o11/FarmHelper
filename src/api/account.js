@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "./axios";
 import qs from "qs"
 
 export function isAuthenticated() {
@@ -16,16 +16,14 @@ export function logOut() {
 
 export async function logIn(username, password) {
   const details = {
-      username: username,
-      password: password
+    emailAddress: username,
+    password: password
   };
 
   try {
-    let response = await axios.post('/login', qs.stringify(details), {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
-    });
+    let response = await axios.post('/login', details );
+    console.log(response)
+    console.log(details)
     /**
      * Temp!!! REMOVE-ME
      */
