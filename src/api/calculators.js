@@ -4,29 +4,23 @@ export async function getCalculators() {
  
   try {
     let response = await axios.get('/calculators');
-    console.log(response);
-    /*response = {
-      data : [
-        {
-          id: 1,
-          kind: 'chicken',
-          name: 'Main project',
-          animals: 500,
-        },
-        {
-          id: 2,
-          kind: 'chicken',
-          name: 'Kelowna Test',
-          animals: 400,
-        }
-      ]
-    }*/
-    console.log("Returning", response.data);
+    
+    //console.log("Returning", response.data);
     return response.data;
   } catch (error) {
     throw error;
   }
 };
+
+export async function postEggCalculator(datainfo) {
+  try {
+    let response = await axios.post('/calchickeneggs', datainfo);
+    console.log("response", response);
+  } catch (error) {
+    throw error;
+  }
+
+}
 
 export async function getEggChickenCalculator(id) {
   

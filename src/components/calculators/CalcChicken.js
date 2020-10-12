@@ -8,6 +8,7 @@ import { parse } from '@fortawesome/fontawesome-svg-core';
 
 export default class CalcChicken extends Component {
   state = {
+    id :0,
     chickens: 0,
     area: 0,
     food: 0,
@@ -31,9 +32,14 @@ export default class CalcChicken extends Component {
     if(this.props.params.id !== undefined && parseInt(this.props.params.id) > 0) {
       const calc = await CalculatorsAPI.getEggChickenCalculator(parseInt(this.props.params.id));
       console.log("CALC", calc);
-      if( calc.lockedfields === null || calc.lockedfields === undefined ) {
-        calc.lockedfields = [false,false,false,false];
-      }
+      let defautLocked = [false,false,false,false];
+      const locked = JSON.parse(calc.lockedfields.trim());
+      if(calc.lockedfields !== undefined && typeof(locked) === "object") {
+        calc.lockedfields = locked;
+      } else {
+        calc.lockedfields = defautLocked;
+      } 
+      
       this.setState(calc);
     } 
     // Updating Chicken Dependent Values
@@ -103,6 +109,13 @@ export default class CalcChicken extends Component {
     return newState;
   }
 
+  saveButtonAction = () => { 
+    console.log("Savebtn", this.state);
+    const data = this.state;
+    data.lockedfields = JSON.stringify(data.lockedfields);
+    CalculatorsAPI.postEggCalculator(data);
+  }
+
   render() {
     console.log(this.props);
     return(
@@ -154,7 +167,7 @@ export default class CalcChicken extends Component {
         <div className="d-flex justify-content-end">
           <button type="button" className="btn btn-primary" 
             onClick={() => this.setState({"showGraph" : !this.state.showGraph})}>Toggle Graph</button>&nbsp;
-          <button type="button" className="btn btn-primary">Save</button>
+          <button type="button" className="btn btn-primary" onClick = {this.saveButtonAction  }>Save</button>
         </div>
         {
           this.state.showGraph &&
