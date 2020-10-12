@@ -23,9 +23,9 @@ export default class Login extends Component {
     const { username, password } = this.state;
     try {
       this.setState({ loading: true });
-      const token = await account.logIn(username, password);
-      console.log('[TOKEN]', token);
-      if(token) {
+      const userInfo = await account.logIn(username, password);
+      console.log('[UserInfo]', userInfo);
+      if(userInfo.token) {
         this.setState({ redirect: true, loading: false });
       } else {
         this.setState({ password: '', loading: false, variant: 'warning', message: 'Please Check Login/Password', showAlert: true});
@@ -68,7 +68,7 @@ export default class Login extends Component {
               <Form.Group controlId="formBasicEmail">
                 <h3>Email address</h3>
                 <Form.Control type="email" placeholder="Enter email" onKeyPress={this.keyPressed}
-                  onChange={(evt) => this.setState({"username": evt.target.value})} />
+                  value={this.state.username} onChange={(evt) => this.setState({"username": evt.target.value})} />
                 <Form.Text className="text-muted">
                   We'll never share your email with anyone else.
                 </Form.Text>
@@ -76,7 +76,7 @@ export default class Login extends Component {
               <Form.Group controlId="formBasicPassword">
                 <h3>Password</h3>
                 <Form.Control type="password" placeholder="Password" onKeyPress={this.keyPressed}
-                  onChange={(evt) => this.setState({"password": evt.target.value})} />
+                  value={this.state.password} onChange={(evt) => this.setState({"password": evt.target.value})} />
               </Form.Group>
               <Button variant="primary" className="LoginButton" type="button" style={{ width: '100%', fontWeight: 'bold' }} onClick={() => this.onSignIn()}>
                 { this.state.loading ? <Spinner animation='border' /> : 'L O G I N' }
