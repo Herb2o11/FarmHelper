@@ -30,6 +30,10 @@ export default class CalcChicken extends Component {
   componentDidMount = async () => {
     if(this.props.params.id !== undefined && parseInt(this.props.params.id) > 0) {
       const calc = await CalculatorsAPI.getEggChickenCalculator(parseInt(this.props.params.id));
+      console.log("CALC", calc);
+      if( calc.lockedfields === null || calc.lockedfields === undefined ) {
+        calc.lockedfields = [false,false,false,false];
+      }
       this.setState(calc);
     } 
     // Updating Chicken Dependent Values
@@ -100,6 +104,7 @@ export default class CalcChicken extends Component {
   }
 
   render() {
+    console.log(this.props);
     return(
       <React.Fragment>
         <div className="form-group row">

@@ -24,17 +24,21 @@ export default class Home extends Component {
             Name of Project
           </th>
           <th>
-            Kind
+            Type of LiveStock
           </th>
           <th>
             Number of Animals
+          </th> 
+          <th>
+            Calculator Link
           </th>
+          
         </tr>
       );  
       this.state.calculators.forEach(calc => {
         let kind = '';
-        switch(calc.kind) {
-          case 'chicken':
+        switch(calc.type) {
+          case "ChickenEggs":
             kind = 'Chicken (Eggs)';
             break;
           default:
@@ -49,7 +53,10 @@ export default class Home extends Component {
               {kind}
             </td>
             <td style={{textAlign:'right'}}>
-              {calc.animals}
+              {calc.numberOfAnimals}
+            </td>
+            <td style={{textAlign:'right'}}>
+              <a href = {"/calc/chicken/" + calc.id}>Select</a>
             </td>
           </tr>
         );  

@@ -16,15 +16,14 @@ export function logOut() {
 
 export async function logIn(username, password) {
   const details = {
-    emailAddress: username,
+    username: username,
     password: password
   };
 
   try {
-    let response = await axios.post('/login', details );
+    let response = await axios.post('/authenticate', details );
     if(response.data !== undefined && response.data.token !== undefined)
     localStorage.setItem('AUTH_TOKEN', response.data.token);
-    localStorage.setItem('AUTH_USER_FARM_ID', response.data.userid);
     return response.data;
   } catch (error) {
     throw error;
