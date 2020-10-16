@@ -46,6 +46,8 @@ export async function getEggChickenCalculator(id) {
   //     period: 12
   //   }
   // };
+
+  
     return response.data;
   } catch (error) {
     throw error;
