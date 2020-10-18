@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import GraphChicken from '../graphs/GraphChicken';
+import GraphChickenEggs from '../graphs/GraphChickenEggs';
 import * as CalculatorsAPI from '../../api/calculators';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLockOpen, faLock } from '@fortawesome/free-solid-svg-icons';
-import { parse } from '@fortawesome/fontawesome-svg-core';
 
 
-export default class CalcChicken extends Component {
+export default class ChickenEggs extends Component {
   state = {
     id :0,
+    description: '',
     chickens: 0,
     area: 0,
     food: 0,
@@ -20,6 +20,7 @@ export default class CalcChicken extends Component {
     chickenPrice: 0,
     foodPrice: 0,
     eggsPrice: 0,
+    foodPrice: 0,
     rent: 0,
     staff: 0,
     chickenMaturity : 0,
@@ -31,7 +32,6 @@ export default class CalcChicken extends Component {
   componentDidMount = async () => {
     if(this.props.params.id !== undefined && parseInt(this.props.params.id) > 0) {
       const calc = await CalculatorsAPI.getEggChickenCalculator(parseInt(this.props.params.id));
-      console.log("CALC", calc);
       let defautLocked = [false,false,false,false];
       const locked = JSON.parse(calc.lockedfields.trim());
       if(calc.lockedfields !== undefined && typeof(locked) === "object") {
@@ -55,7 +55,7 @@ export default class CalcChicken extends Component {
     if(isNaN(parsed)) {
       this.setState({[name]: 0});
     } else {
-      this.setState({[name]: value});
+      this.setState({[name]: parsed});
 
     }
   }
@@ -117,9 +117,17 @@ export default class CalcChicken extends Component {
   }
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     return(
       <React.Fragment>
+        <div className="form-group row" style={{marginTop: "10px"}}>
+          <label className="col-sm-4 col-form-label">Project Description</label>
+          <div className="col-sm-8">
+            <input type="text" className="form-control text-right" name="description"
+              value={this.state.description} 
+              onChange={ (e) => this.setState({description: e.target.value})} />
+          </div>
+        </div>
         <div className="form-group row">
           <label className="col-sm-4 col-form-label">Number of Chickens</label>
           <label className="col-sm-1 text-right col-form-label">
@@ -171,7 +179,7 @@ export default class CalcChicken extends Component {
         </div>
         {
           this.state.showGraph &&
-          <GraphChicken data={this.state} onGraphSettingsChange={this.onGraphSettingsChange} />
+          <GraphChickenEggs data={this.state} onGraphSettingsChange={this.onGraphSettingsChange} />
         }
       </React.Fragment>
     );    

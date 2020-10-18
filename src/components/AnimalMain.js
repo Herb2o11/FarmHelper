@@ -18,12 +18,12 @@ export default class AnimalMain extends Component {
         Calculator = React.lazy(() => import('./calculators/CalcFish'));
         break;
       default: //Chicken
-        Calculator = React.lazy(() => import('./calculators/CalcChicken'));
+        Calculator = React.lazy(() => import('./calculators/ChickenEggs'));
     } 
     return(
       <React.Fragment>
-        <p>I'm Animal Main (for now)!</p>
         <div className="container">
+          <h2>Production Calculator</h2>
           <div className="row">
             <div className="col">
               <Suspense fallback={<Spinner />}>

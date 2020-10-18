@@ -11,6 +11,7 @@ export default class Home extends Component {
   async componentDidMount() {
     if(AccountAPI.isAuthenticated()) {
       const calculators = await CalculatorsAPI.getCalculators();
+      console.log(calculators);
       this.setState({calculators : calculators});
     }
   }
@@ -47,7 +48,7 @@ export default class Home extends Component {
         res.push(
           <tr key={"TRCalc" + calc.id}>
             <td>
-              <a href={'calc/' + calc.kind + '/' + calc.id}> {calc.name} </a>
+              <a href={'calc/' + calc.type + '/' + calc.id}> {calc.description} </a>
             </td>
             <td>
               {kind}
@@ -56,7 +57,7 @@ export default class Home extends Component {
               {calc.numberOfAnimals}
             </td>
             <td style={{textAlign:'right'}}>
-              <a href = {"/calc/chicken/" + calc.id}>Select</a>
+              <a href={'calc/' + calc.type + '/' + calc.id}>Select</a>
             </td>
           </tr>
         );  

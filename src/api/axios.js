@@ -20,9 +20,9 @@ instance.interceptors.request.use(function(request){
   const authToken = getAuthToken();
   if(authToken !== '') {
     request.headers.Authorization = 'Bearer ' + authToken;
-    console.log(authToken);
+    // console.log(authToken);
   }
-  console.log("REQUEST", request);
+  console.log("REQUEST DATA", request.data);
   return request;
 });
 

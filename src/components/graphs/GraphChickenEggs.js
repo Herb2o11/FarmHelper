@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import CanvasGraph from './CanvasGraph';
 import hash from 'object-hash';
 
-export default class GraphChicken extends Component {
+export default class GraphChickenEggs extends Component {
   buildDataset = (data) => {
     const weeks = (Math.ceil(parseInt(data.period) / 12 * 52));
     const x_labels = [];
@@ -24,7 +24,7 @@ export default class GraphChicken extends Component {
       if(chicken_age === this.props.data.chickenMaturity - 1) {
         v_chickens = n_of_chickens * this.props.data.chickenPrice;
       }
-      // last week
+      // if its the last week
       if((i+1) === weeks) {
         v_chickens = n_of_chickens * this.props.data.chickenPrice * 
           (chicken_age / this.props.data.chickenMaturity);
@@ -38,9 +38,7 @@ export default class GraphChicken extends Component {
       if(chicken_age >= this.props.data.eggsMaturity) {
         v_eggs = ( n_of_chickens / this.props.data.chickens ) * this.props.data.eggs * this.props.data.eggsPrice;
       }
-      // console.log(n_of_chickens);
-      // console.log(this.props.data.chickens);
-      // console.log(this.props.data.eggsPrice);
+
       values[2].push(v_eggs);
       //******************Total
       total += v_chickens+v_staff_area+v_eggs;
@@ -48,7 +46,8 @@ export default class GraphChicken extends Component {
 
       // deathRate commes as int => 200 for 2%
       n_of_chickens = Math.ceil(n_of_chickens * ((100 - this.props.data.deathRate/100) / 100));
-      console.log("#: ",n_of_chickens);      
+      console.log("#: ",n_of_chickens);   
+      console.log("DATA: ",this.props.data);   
       // console.log("Age: ",chicken_age);      
       chicken_age = (( chicken_age + 1 ) % this.props.data.chickenMaturity);
     }
@@ -110,6 +109,14 @@ export default class GraphChicken extends Component {
           <div className="col-sm-8">
             <input type="text" className="form-control text-right" name="eggsPrice"
               value={this.props.data.eggsPrice} 
+              onChange={this.props.onGraphSettingsChange} />
+          </div>
+        </div>
+        <div className="form-group row">
+          <label className="col-sm-4 col-form-label">Food Price / Kg</label>
+          <div className="col-sm-8">
+            <input type="text" className="form-control text-right" name="foodPrice"
+              value={this.props.data.foodPrice} 
               onChange={this.props.onGraphSettingsChange} />
           </div>
         </div>
@@ -189,36 +196,4 @@ export default class GraphChicken extends Component {
       </React.Fragment>
     );    
   }
-
-  // data = {
-  //   labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-  //   datasets: [
-  //     {
-  //       label: '# of Votes',
-  //       data: [-12, 19, -3, 5, 2, 3],
-  //       backgroundColor: 'rgba(255, 99, 132, 0.2)',
-  //       borderColor: 'rgb(255, 99, 132)',
-  //       borderWidth: 1
-  //     },
-  //     {
-  //       label: '# of Votes',
-  //       data: [12, 19, 3, 5, 2, 3],
-  //       backgroundColor: 'rgb(54, 162, 235, 0.2)',
-  //       borderColor: 'rgb(54, 162, 235)',
-  //       borderWidth: 1
-  //     },{
-  //       label: '# of Votes',
-  //       data: [12, 19, 3, 5, 2, 3],
-  //       backgroundColor: 'rgba(255, 206, 86, 0.2)',
-  //       borderColor: 'rgb(255, 206, 86)',
-  //       borderWidth: 1
-  //     },{
-  //       label: 'Line Dataset',
-  //       data: [50, 50, 50, -12, 55, 49],
-  //       type: 'line',
-  //       backgroundColor: 'rgba(0, 0, 0, 0)',
-  //       borderColor: 'rgb(75, 192, 192)',
-  //     }
-  //   ]
-  // }
 }
