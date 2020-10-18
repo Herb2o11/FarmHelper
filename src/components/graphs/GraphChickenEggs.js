@@ -11,6 +11,10 @@ export default class GraphChickenEggs extends Component {
     let total = 0;
     let chicken_age = 0;
     let n_of_chickens = 0;
+    // deathRate commes as int => 200 for 2%
+    const default_death_rate = this.props.data.deathRate/10000;
+    // First Week's death rate is always equal to the user's set.
+    let week_deathRate = default_death_rate; 
     for(let i=0; i < weeks; ++i) {
       x_labels.push('Week '+(i));
       //****************** Chickens Negotiations
@@ -44,8 +48,19 @@ export default class GraphChickenEggs extends Component {
       total += v_chickens+v_staff_area+v_eggs;
       values[3].push(total);
 
-      // deathRate commes as int => 200 for 2%
-      n_of_chickens = Math.ceil(n_of_chickens * ((100 - this.props.data.deathRate/100) / 100));
+      const new_n_of_chickens = Math.ceil(n_of_chickens * (1 - week_deathRate));
+      // If deathRate is so small that no Chicken has died
+      if(new_n_of_chickens===n_of_chickens) {
+        // Carry the rate for next week
+        week_deathRate += default_death_rate
+      } else {
+        // Calc how many (%) has died
+        const percentChickenDead = 1 - (new_n_of_chickens/n_of_chickens);
+        week_deathRate -= percentChickenDead;
+      }
+      n_of_chickens = new_n_of_chickens;
+
+      console.log("#Rate: ",week_deathRate);   
       console.log("#: ",n_of_chickens);   
       console.log("DATA: ",this.props.data);   
       // console.log("Age: ",chicken_age);      
