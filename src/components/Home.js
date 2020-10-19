@@ -10,9 +10,13 @@ export default class Home extends Component {
 
   async componentDidMount() {
     if(AccountAPI.isAuthenticated()) {
-      const calculators = await CalculatorsAPI.getCalculators();
-      console.log(calculators);
-      this.setState({calculators : calculators});
+      try{
+        const calculators = await CalculatorsAPI.getCalculators();
+        this.setState({calculators : calculators});
+      } catch (error) {
+        
+      }
+      
     }
   }
 

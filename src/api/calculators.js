@@ -4,8 +4,6 @@ export async function getCalculators() {
  
   try {
     let response = await axios.get('/calculators');
-    
-    //console.log("Returning", response.data);
     return response.data;
   } catch (error) {
     throw error;

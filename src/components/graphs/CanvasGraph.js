@@ -42,7 +42,7 @@ class CanvasChart extends Component {
                 stacked: true
                 }],
               yAxes: [{
-                stacked: true
+                stacked: this.props.yStack
               }]
             }
           }

@@ -40,7 +40,7 @@ export default class Header extends Component {
           <a className="nav-link active" id="pills-home-tab" href="/about" role="tab"><FontAwesomeIcon icon={faAddressCard} /> About</a>
         </li>
         <NavDropdown title="Calculators" id="basic-nav-dropdown" className="active">
-          <NavDropdown.Item href="/calc/chicken">ChickenEggs</NavDropdown.Item>
+          <NavDropdown.Item href="/calc/ChickenEggs">ChickenEggs</NavDropdown.Item>
           <NavDropdown.Item href="/calc/chickenbroiler">ChickenBroiler</NavDropdown.Item>
           <NavDropdown.Item href="/calc/quail">Quail</NavDropdown.Item>
           <NavDropdown.Item href="/calc/rabbit">Rabbit</NavDropdown.Item>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import GraphChickenEggs from '../graphs/GraphChickenEggs';
 import * as CalculatorsAPI from '../../api/calculators';
+import { chickenEggsFoodCfg, chickenEggsWeightCfg, chickenEggsPercentageCfg } from '../../config/calculators_config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLockOpen, faLock } from '@fortawesome/free-solid-svg-icons';
 
@@ -12,27 +13,27 @@ export default class ChickenEggs extends Component {
     chickens: 0,
     area: 0,
     food: 0,
-    eggs: 0,
-    lockedfields: [false,false,false,false],
+    // eggs: 0,
+    lockedfields: [false,false,false],
     showGraph : true,
     /** Graph State */
     chickPrice: 0,
     chickenPrice: 0,
     foodPrice: 0,
     eggsPrice: 0,
-    foodPrice: 0,
     rent: 0,
     staff: 0,
     chickenMaturity : 0,
-    eggsMaturity: 0,
+    // eggsMaturity: 0,
     deathRate: 0,
-    period: 12
+    period: 12,
+    graph_type: 0 
   }
 
   componentDidMount = async () => {
     if(this.props.params.id !== undefined && parseInt(this.props.params.id) > 0) {
       const calc = await CalculatorsAPI.getEggChickenCalculator(parseInt(this.props.params.id));
-      let defautLocked = [false,false,false,false];
+      let defautLocked = [false,false,false];
       const locked = JSON.parse(calc.lockedfields.trim());
       if(calc.lockedfields !== undefined && typeof(locked) === "object") {
         calc.lockedfields = locked;
@@ -78,13 +79,12 @@ export default class ChickenEggs extends Component {
   }
 
   adjustValues = (name, value) => {
-    const relations = [ 1, 0.25, 0.12, 0.80];
+    const relations = [ 1, 0.25, 0.12];
     /**
      * Each chicken corresponds to:
      * 1     chicken
      * 0.5   m2
      * 0.3   kg of food
-     * 0.75  eggs
      */
     let chickens = 0;
     switch(name) {
@@ -97,15 +97,15 @@ export default class ChickenEggs extends Component {
       case 'food':
         chickens = value * ( 1 / relations[2]);
         break;
-      case 'eggs':
-        chickens = value * ( 1 / relations[3]);
-        break;
+      // case 'eggs':
+      //   chickens = value * ( 1 / relations[3]);
+      //   break;
     }
     const newState = {};
     if(!this.state.lockedfields[0]) { newState.chickens = Math.ceil(chickens) };
     if(!this.state.lockedfields[1]) { newState.area = Math.ceil(chickens * relations[1]) };
     if(!this.state.lockedfields[2]) { newState.food = Math.ceil(chickens * relations[2]) };
-    if(!this.state.lockedfields[3]) { newState.eggs = Math.ceil(chickens * relations[3]) };
+    // if(!this.state.lockedfields[3]) { newState.eggs = Math.ceil(chickens * relations[3]) };
     return newState;
   }
 
@@ -117,7 +117,6 @@ export default class ChickenEggs extends Component {
   }
 
   render() {
-    // console.log(this.props);
     return(
       <React.Fragment>
         <div className="form-group row" style={{marginTop: "10px"}}>
@@ -162,14 +161,12 @@ export default class ChickenEggs extends Component {
           </div>
         </div>
         <div className="form-group row">
-          <label className="col-sm-4 col-form-label">Eggs Daily</label>
-          <label className="col-sm-1 text-right col-form-label">
-            <FontAwesomeIcon icon={(this.state.lockedfields[3]?faLock:faLockOpen)} 
-              onClick={() => this.setLockers(3)}/>
-          </label>
-          <div className="col-sm-7">
-            <input type="text" className="form-control text-right" value={this.state.eggs} 
-              name="eggs" onChange={this.handleForm}/>
+          <label className="col-sm-4 col-form-label">Eggs Daily (Peak)</label>
+          
+          <div className="col-sm-8">
+            <input type="text" className="form-control text-right" 
+              value={Math.floor(Math.max(...chickenEggsPercentageCfg) * this.state.chickens)} 
+              name="eggs" disabled={true} />
           </div>
         </div>
         <div className="d-flex justify-content-end">
