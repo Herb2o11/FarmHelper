@@ -30,26 +30,16 @@ export async function logIn(username, password) {
   }
 };
 
-export async function signUp(firstName, lastName, username, password) {
-  // const details = {
-  //     username: username,
-  //     password: password,
-  //     first_name : firstName,
-  //     last_name : lastName
-  // };
+export async function signUp(username, password) {
+  const details = {
+      username: username,
+      password: password,
+  };
 
-  // try {
-  //   let response = await axios.post('/api/signup', qs.stringify(details), {
-  //     headers: {
-  //       'Content-Type': 'application/x-www-form-urlencoded'
-  //     }
-  //   });
-    /**
-     * Temp!!! REMOVE-ME
-     */
-    let response = {"data": { "token": 'XXAUTHENTICATEDXXX'}};
-     return response.data.token;
-  // } catch (error) {
-  //   throw error;
-  // }
+  try {
+    let response = await axios.post('/newuser', details);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
 };

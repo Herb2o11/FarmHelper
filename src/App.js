@@ -9,6 +9,7 @@ import {
 
 import Header from './fragments/Header';
 import Login from './fragments/Login';
+import Signup from './fragments/Signup';
 import Home from './components/Home';
 import About from './components/About';
 import AnimalMain from './components/AnimalMain';
@@ -20,6 +21,7 @@ function App() {
     <Router>
         <Switch>
           <PublicRoute exact path="/" component={Home} />
+          <PublicRoute exact path="/createLogin" component={Signup} />
           <PublicRoute exact path="/about" component={About} />
           <PublicRoute exact path="/login" component={Login} />
           <PrivateRoute exact path="/calc/:animal/:id?" component={AnimalMain} />

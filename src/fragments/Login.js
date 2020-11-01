@@ -69,9 +69,6 @@ export default class Login extends Component {
                 <h3>Email address</h3>
                 <Form.Control type="email" placeholder="Enter email" onKeyPress={this.keyPressed}
                   value={this.state.username} onChange={(evt) => this.setState({"username": evt.target.value})} />
-                <Form.Text className="text-muted">
-                  We'll never share your email with anyone else.
-                </Form.Text>
               </Form.Group>
               <Form.Group controlId="formBasicPassword">
                 <h3>Password</h3>
@@ -81,6 +78,9 @@ export default class Login extends Component {
               <Button variant="primary" className="LoginButton" type="button" style={{ width: '100%', fontWeight: 'bold' }} onClick={() => this.onSignIn()}>
                 { this.state.loading ? <Spinner animation='border' /> : 'L O G I N' }
               </Button>
+              <Form.Group>
+                <a href="/createLogin">Need a login? Sign UP</a>
+              </Form.Group>
             </Form>
 
           </Col>
