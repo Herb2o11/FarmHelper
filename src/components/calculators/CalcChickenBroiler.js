@@ -80,7 +80,7 @@ onGraphSettingsChange = (e) => {
      * 1     chicken
      * 0.5   m2
      * 0.3   kg of food
-     * 0.80  eggs
+     
      */
     let chickens = 0;
     switch(name) {

@@ -4,6 +4,22 @@ import hash from 'object-hash';
 
 
 export default class GraphChickenBroiler extends Component {
+
+
+  calcDeathRate = (deathRate, n_of_chickens) => {
+    const new_n_of_chickens = Math.ceil(n_of_chickens * (1 - deathRate));
+      // If deathRate is so small that no Chicken has died
+      if(new_n_of_chickens!==n_of_chickens) {
+        // Calc how many (%) has died and take of the death rate for next week
+        const percentChickenDead = 1 - (new_n_of_chickens/n_of_chickens);
+        deathRate -= percentChickenDead;
+      } 
+      return {
+      n_of_chickens: new_n_of_chickens,
+      deathRate: deathRate
+      }
+  }
+
     buildDataset = (data) => {
       const days = (Math.ceil(parseInt(data.period) / 12 * 52));
       const x_labels = [];
@@ -35,16 +51,16 @@ export default class GraphChickenBroiler extends Component {
         let v_staff_area = -(this.props.data.staff + this.props.data.rent);
         values[1].push(v_staff_area);
         //******************Egg's
-        let v_eggs = 0;
-        if(chicken_age >= this.props.data.eggsMaturity) {
-          v_eggs = ( n_of_chickens / this.props.data.chickens ) * this.props.data.eggs * this.props.data.eggsPrice;
-        }
+      //  let v_eggs = 0;
+       // if(chicken_age >= this.props.data.eggsMaturity) {
+       //   v_eggs = ( n_of_chickens / this.props.data.chickens ) * this.props.data.eggs * this.props.data.eggsPrice;
+       // }
         // console.log(n_of_chickens);
         // console.log(this.props.data.chickens);
         // console.log(this.props.data.eggsPrice);
-        values[2].push(v_eggs);
+        //values[2].push(v_eggs);
         //******************Total
-        total += v_chickens+v_staff_area+v_eggs;
+        total += v_chickens+v_staff_area;
         values[3].push(total);
   
         // deathRate commes as int => 200 for 2%
@@ -105,17 +121,9 @@ export default class GraphChickenBroiler extends Component {
                 value={this.props.data.chickenPrice} 
                 onChange={this.props.onGraphSettingsChange} />
             </div>
-          </div>
+          </div>         
           <div className="form-group row">
-            <label className="col-sm-4 col-form-label">Egg's Price (at Sell)</label>
-            <div className="col-sm-8">
-              <input type="text" className="form-control text-right" name="eggsPrice"
-                value={this.props.data.eggsPrice} 
-                onChange={this.props.onGraphSettingsChange} />
-            </div>
-          </div>
-          <div className="form-group row">
-            <label className="col-sm-4 col-form-label">Weekly Area cost/m<sup>2</sup></label>
+            <label className="col-sm-4 col-form-label">Weekly General cost/m<sup>2</sup></label>
             <div className="col-sm-8">
               <input type="text" className="form-control text-right" name="rent"
                 value={this.props.data.rent} 
@@ -133,7 +141,7 @@ export default class GraphChickenBroiler extends Component {
           <div className="form-group row">
             <label className="col-sm-4 col-form-label">Chicken Maturity (Days)</label>
             <div className="col-sm-8 row">
-              <input type="range" className="form-control-range" name="chickenMaturity" max="200" 
+              <input type="range" className="form-control-range" name="chickenMaturity" max="100" 
                 value={this.props.data.chickenMaturity} 
                 onChange={this.props.onGraphSettingsChange} />
               <div>{this.props.data.chickenMaturity+' Days'}</div>
