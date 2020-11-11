@@ -46,9 +46,13 @@ export default class Home extends Component {
           case "ChickenEggs":
             kind = 'Chicken (Eggs)';
             break;
-          default:
-            kind = 'Broiler';
+          case "ChickenBroiler":
+            kind = 'ChickenBroiler (Broiler)';
+            break;
+        default:
+            kind = 'Other';
         }
+        
         res.push(
           <tr key={"TRCalc" + calc.id}>
             <td>
@@ -94,7 +98,7 @@ export default class Home extends Component {
     } else {
       return (
         <div style={{marginTop:'50px'}}>
-          <p>Welcome to Farmer Helper </p>
+          <p>Blá,Blá,Blá,Blá,Blá,Blá,Blá</p>
           <h3>Please, Log IN!</h3>
         </div>
       );  

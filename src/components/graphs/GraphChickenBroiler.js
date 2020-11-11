@@ -51,14 +51,14 @@ export default class GraphChickenBroiler extends Component {
         let v_staff_area = -(this.props.data.staff + this.props.data.rent);
         values[1].push(v_staff_area);
         //******************Egg's
-      //  let v_eggs = 0;
-       // if(chicken_age >= this.props.data.eggsMaturity) {
-       //   v_eggs = ( n_of_chickens / this.props.data.chickens ) * this.props.data.eggs * this.props.data.eggsPrice;
-       // }
-        // console.log(n_of_chickens);
-        // console.log(this.props.data.chickens);
-        // console.log(this.props.data.eggsPrice);
-        //values[2].push(v_eggs);
+        let v_eggs = 0;
+        if(chicken_age >= this.props.data.eggsMaturity) {
+          v_eggs = ( n_of_chickens / this.props.data.chickens ) * this.props.data.eggs * this.props.data.eggsPrice;
+        }
+         console.log(n_of_chickens);
+         console.log(this.props.data.chickens);
+         console.log(this.props.data.eggsPrice);
+        values[2].push(v_eggs);
         //******************Total
         total += v_chickens+v_staff_area;
         values[3].push(total);

@@ -1,7 +1,10 @@
 import { Component } from "react"
+import React from 'react'
+import GraphChickenBroiler from '../graphs/GraphChickenBroiler';
 import * as CalculatorsAPI from '../../api/calculators';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLockOpen, faLock } from '@fortawesome/free-solid-svg-icons';
+
 import { parse } from '@fortawesome/fontawesome-svg-core';
 
 export default class CalcChickenBroiler extends Component {
@@ -10,7 +13,7 @@ export default class CalcChickenBroiler extends Component {
         chickensinitialacomodation: 0,
         area: 0,
         food: 0,
-        lockedfields: [false,false,false,false],
+        lockedfields: [false,false,false],
         showgraph : true,
 
         //** Poultry Chart State*/
@@ -37,7 +40,7 @@ export default class CalcChickenBroiler extends Component {
 
 componentDidMount = async () => {
     if(this.props.params.id !== undefined && parseInt(this.props.params.id) > 0) {
-      const calc = await CalculatorsAPI.getBroilerChickenCalculator(parseInt(this.props.params.id));
+      const calc = await CalculatorsAPI.getBroilerCalculator(parseInt(this.props.params.id));
       console.log("CALC", calc);
       let defautLocked = [false,false,false,false];
       const locked = JSON.parse(calc.lockedfields.trim());
@@ -113,6 +116,14 @@ onGraphSettingsChange = (e) => {
     console.log(this.props);
     return(
       <React.Fragment>
+         <div className="form-group row" style={{marginTop: "10px"}}>
+          <label className="col-sm-4 col-form-label">Project Description</label>
+          <div className="col-sm-8">
+            <input type="text" className="form-control text-right" name="description"
+              value={this.state.description} 
+              onChange={ (e) => this.setState({description: e.target.value})} />
+          </div>
+        </div>
         <div className="form-group row">
           <label className="col-sm-4 col-form-label">Number of Chickens</label>
           <label className="col-sm-1 text-right col-form-label">
