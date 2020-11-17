@@ -58,10 +58,10 @@ export default class GraphChickenBroiler extends Component {
          console.log(n_of_chickens);
          console.log(this.props.data.chickens);
          console.log(this.props.data.eggsPrice);
-        values[2].push(v_eggs);
+        // values[2].push(v_eggs);
         //******************Total
         total += v_chickens+v_staff_area;
-        values[3].push(total);
+        values[2].push(total);
   
         // deathRate commes as int => 200 for 2%
         n_of_chickens = Math.ceil(n_of_chickens * ((100 - this.props.data.deathRate/100) / 100));

@@ -23,8 +23,8 @@ export default class AnimalMain extends Component {
       case 'eggs':
       Calculator = React.lazy(() => import('./calculators/ChickenEggs'));
       break;
-      default: //Chicken
-        Calculator = React.lazy(() => import('./calculators/ChickenEggs'));
+      /*default: //Chicken
+        Calculator = React.lazy(() => import('./calculators/ChickenEggs'));*/
     } 
     return(
       <React.Fragment>

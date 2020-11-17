@@ -1,5 +1,4 @@
-import { Component } from "react"
-import React from 'react'
+import React, { Component } from "react";
 import GraphChickenBroiler from '../graphs/GraphChickenBroiler';
 import * as CalculatorsAPI from '../../api/calculators';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,7 +9,7 @@ import { parse } from '@fortawesome/fontawesome-svg-core';
 export default class CalcChickenBroiler extends Component {
     state = {
         id: 0,
-        chickensinitialacomodation: 0,
+        chickens: 0,
         area: 0,
         food: 0,
         lockedfields: [false,false,false],
@@ -37,6 +36,16 @@ export default class CalcChickenBroiler extends Component {
     period: 12
   }
 
+  handleForm = (e) => {
+    const { name, value } = e.target
+    let parsed_value =  parseFloat(value); // Parsing
+    //console.log(parsed_value)
+    if(Number.isNaN(parsed_value)) {
+      this.setState(this.adjustValues(name, 0));
+    } else {
+      this.setState( this.adjustValues(name, parsed_value) );
+    }
+  }
 
 componentDidMount = async () => {
     if(this.props.params.id !== undefined && parseInt(this.props.params.id) > 0) {
