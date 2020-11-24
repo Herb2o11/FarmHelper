@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import CanvasGraph from './CanvasGraph';
+import { chickenBroilerFoodCfg, chickenBroilerWeightCfg  } from '../../config/calculators_config';
+
 import hash from 'object-hash';
 
 
@@ -20,94 +22,175 @@ export default class GraphChickenBroiler extends Component {
       }
   }
 
-    buildDataset = (data) => {
-      const days = (Math.ceil(parseInt(data.period) / 12 * 52));
-      const x_labels = [];
-      const line_labels = ['Chickens Negotiations', 'Staff/Area', 'Total'];
-      const values = [[],[],[]];
-      let total = 0;
-      let chicken_age = 0;
-      let n_of_chickens = 0;
-      for(let i=0; i < days; ++i) {
-        x_labels.push('days '+(i));
-        //****************** Chickens Negotiations
-        let v_chickens = 0;
-        // Buy new Chicks
-        if(chicken_age === 0) {
-          n_of_chickens = this.props.data.chickens; 
-          v_chickens = - ( n_of_chickens * this.props.data.chickPrice );
-        }
-        // Sell Chickens
-        if(chicken_age === this.props.data.chickenMaturity - 1) {
-          v_chickens = n_of_chickens * this.props.data.chickenPrice;
-        }
-        // last week
-        if((i+1) === days) {
-          v_chickens = n_of_chickens * this.props.data.chickenPrice * 
-            (chicken_age / this.props.data.chickenMaturity);
-        }
-        values[0].push(v_chickens);
-        //****************** Staff/Area
-        let v_staff_area = -(this.props.data.staff + this.props.data.rent);
-        values[1].push(v_staff_area);
-        //******************Egg's
-        let v_eggs = 0;
-        if(chicken_age >= this.props.data.eggsMaturity) {
-          v_eggs = ( n_of_chickens / this.props.data.chickens ) * this.props.data.eggs * this.props.data.eggsPrice;
-        }
-         console.log(n_of_chickens);
-         console.log(this.props.data.chickens);
-         console.log(this.props.data.eggsPrice);
-        // values[2].push(v_eggs);
-        //******************Total
-        total += v_chickens+v_staff_area;
-        values[2].push(total);
-  
-        // deathRate commes as int => 200 for 2%
-        n_of_chickens = Math.ceil(n_of_chickens * ((100 - this.props.data.deathRate/100) / 100));
-        console.log("#: ",n_of_chickens);      
-        // console.log("Age: ",chicken_age);      
-        chicken_age = (( chicken_age + 1 ) % this.props.data.chickenMaturity);
-      }
+  buildFinancialDataset = (data) => {
+    const weeks = (Math.ceil(parseInt(data.period) / 12 * 52));
+    const x_labels = [];
+    const line_labels = ['Chickens Negotiations', 'Staff/Area', 'Food', 'Total'];
+    const values = [[],[],[],[]];
+    let total = 0;
+    let chicken_age = 1;
+    let n_of_chickens = 0;
+    // deathRate commes as int => 200 for 2%
+    const default_death_rate = this.props.data.deathRate/10000;
+    // First Week's death rate is always equal to the user's set.
+    let week_deathRate = default_death_rate; 
+    for(let i=1; i<= weeks; ++i) {
+      // console.log({
+      //   "i":i,
+      //   "Age":chicken_age,
+      //   "#":n_of_chickens
+      // });
+      x_labels.push('Week '+(i));
       
-      return {
-        labels: x_labels,
-        datasets: [
-          {
-            label: line_labels[0],
-            data: values[0],
-            backgroundColor: 'rgba(255, 99, 132, 0.6)',
-            borderColor: 'rgb(255, 99, 132)',
-            borderWidth: 1
-          },
-          {
-            label: line_labels[1],
-            data: values[1],
-            backgroundColor: 'rgb(54, 162, 235, 0.6)',
-            borderColor: 'rgb(54, 162, 235)',
-            borderWidth: 1
-          },{
-            label: line_labels[2],
-            data: values[2],
-            backgroundColor: 'rgba(255, 206, 86, 0.6)',
-            borderColor: 'rgb(255, 206, 86)',
-            borderWidth: 1
-          },{
-            label: line_labels[3],
-            data: values[3],
-            type: 'line',
-            backgroundColor: 'rgba(0, 0, 0, 0)',
-            borderColor: 'rgb(75, 192, 192)',
-          }
-        ]
+      //****************** Chickens Negotiations
+      let v_chickens = 0;
+      // Buy new Chicks
+      if(chicken_age === 1) {
+        n_of_chickens = this.props.data.chickens; 
+        week_deathRate = default_death_rate; 
+        v_chickens = - ( n_of_chickens * this.props.data.chickPrice );
       }
+      // Sell Chickens at Maturity or at last weeks project
+      if(chicken_age === this.props.data.chickenMaturity || i === weeks) {
+        v_chickens = n_of_chickens * chickenBroilerWeightCfg[chicken_age] * this.props.data.chickenPrice;
+      }
+      values[0].push(v_chickens);
+      
+      //****************** Staff/Area
+      let v_staff_area = -(this.props.data.staff + this.props.data.rent);
+      values[1].push(v_staff_area);
+
+      //****************** Food
+      let v_food = - (n_of_chickens * chickenBroilerFoodCfg[chicken_age] * this.props.data.foodPrice);
+      values[2].push(v_food);
+
+      
+      //******************Total
+      total += v_chickens + v_staff_area + v_food;
+      values[3].push(total);
+
+      const chickenStat = this.calcDeathRate(week_deathRate, n_of_chickens);
+      n_of_chickens = chickenStat.n_of_chickens;
+      week_deathRate = chickenStat.deathRate + default_death_rate;
+      
+      chicken_age = ( chicken_age % this.props.data.chickenMaturity ) + 1;
     }
+    
+    return {
+      labels: x_labels,
+      datasets: [
+        {
+          label: line_labels[0],
+          data: values[0],
+          backgroundColor: 'rgba(255, 99, 132, 0.6)',
+          borderColor: 'rgb(255, 99, 132)',
+          borderWidth: 1
+        },
+        {
+          label: line_labels[1],
+          data: values[1],
+          backgroundColor: 'rgb(54, 162, 235, 0.6)',
+          borderColor: 'rgb(54, 162, 235)',
+          borderWidth: 1
+        },{        
+          label: line_labels[2],
+          data: values[2],
+          backgroundColor: 'rgba(153, 102, 255, 0.6)',
+          borderColor: 'rgb(153, 102, 255)',
+          borderWidth: 1
+        },{
+          label: line_labels[3],
+          data: values[3],
+          type: 'line',
+          backgroundColor: 'rgba(0, 0, 0, 0)',
+          borderColor: 'rgb(75, 192, 192)',
+        }
+      ]
+    }
+  }
+
+  buildBroilerDataset = (data) => {
+    const weeks = (Math.ceil(parseInt(data.period) / 12 * 52));
+    const x_labels = [];
+    const line_labels = ['Total Number of Chickens', 'Weekly Food (Kg)', 'Total Amount of Food (Hundreds of kg)' ];
+    const values = [[],[],[]];
+    let chicken_age = 1;
+    let n_of_chickens = 0;
+    let acum_eggs = 0;
+    let acum_food = 0;
+    // deathRate commes as int => 200 for 2%
+    const default_death_rate = this.props.data.deathRate/10000;
+    // First Week's death rate is always equal to the user's set.
+    let week_deathRate = default_death_rate; 
+
+    for(let i=1; i<= weeks; ++i) {
+      x_labels.push('Week '+(i));
+
+      if(chicken_age === 1) {
+        week_deathRate = default_death_rate; 
+        n_of_chickens = this.props.data.chickens; 
+      }
+
+      //******************Chickens
+      values[0].push(n_of_chickens);
+
+      //******************Food
+      const food = (n_of_chickens * chickenBroilerFoodCfg[chicken_age]);
+      values[1].push(food);
+      acum_food += food;
+      values[2].push(acum_food/100);
+
+      const chickenStat = this.calcDeathRate(week_deathRate, n_of_chickens);
+      n_of_chickens = chickenStat.n_of_chickens;
+      week_deathRate = chickenStat.deathRate + default_death_rate;
+      
+      chicken_age = ( chicken_age % this.props.data.chickenMaturity ) + 1;
+    }
+    
+    return {
+      labels: x_labels,
+      datasets: [
+        {
+          label: line_labels[0],
+          data: values[0],
+          type: 'line',
+          backgroundColor: 'rgba(255, 206, 86, 0.2)',
+          borderColor: 'rgb(255, 206, 86)',
+          borderWidth: 1
+        },{        
+          label: line_labels[1],
+          data: values[1],
+          backgroundColor: 'rgba(153, 102, 255, 0.6)',
+          borderColor: 'rgb(153, 102, 255)',
+          borderWidth: 1
+        },{
+          label: line_labels[2],
+          data: values[2],
+          type: 'line',
+          backgroundColor: 'rgba(0, 0, 0, 0)',
+          borderColor: 'rgb(75, 192, 192)',
+        }
+      ]
+    }
+  }
+
     render() {
-      const dataset = this.buildDataset(this.props.data);
+      let dataset = null;
+      let yStack = false;
+      switch(this.props.data.graph_type) {
+        default:
+        case 0:
+          dataset = this.buildFinancialDataset(this.props.data);
+          yStack = true;
+          break;
+        case 1:
+          dataset = this.buildBroilerDataset(this.props.data);
+          break;
+      }
       return (
         <React.Fragment>
           <div className="form-group row" style={{marginTop: "10px"}}>
-            <label className="col-sm-4 col-form-label">Chick's Price Average (Buying)</label>
+            <label className="col-sm-4 col-form-label">Chick's Price <strong>(Buying: $ / Unit)</strong></label>
             <div className="col-sm-8">
               <input type="text" className="form-control text-right" name="chickPrice"
                 value={this.props.data.chickPrice} 
@@ -115,13 +198,21 @@ export default class GraphChickenBroiler extends Component {
             </div>
           </div>
           <div className="form-group row" style={{marginTop: "10px"}}>
-            <label className="col-sm-4 col-form-label">Chicken's Price Average (Selling)</label>
+            <label className="col-sm-4 col-form-label">Chicken's Price <strong>(Selling: $ / Kg)</strong></label>
             <div className="col-sm-8">
               <input type="text" className="form-control text-right" name="chickenPrice"
                 value={this.props.data.chickenPrice} 
                 onChange={this.props.onGraphSettingsChange} />
             </div>
-          </div>         
+          </div>     
+          <div className="form-group row">
+          <label className="col-sm-4 col-form-label">Food Price / Kg</label>
+          <div className="col-sm-8">
+            <input type="text" className="form-control text-right" name="foodPrice"
+              value={this.props.data.foodPrice} 
+              onChange={this.props.onGraphSettingsChange} />
+          </div>
+        </div>    
           <div className="form-group row">
             <label className="col-sm-4 col-form-label">Weekly General cost/m<sup>2</sup></label>
             <div className="col-sm-8">
@@ -139,21 +230,13 @@ export default class GraphChickenBroiler extends Component {
             </div>
           </div>
           <div className="form-group row">
-            <label className="col-sm-4 col-form-label">Chicken Maturity (Days)</label>
+            <label className="col-sm-4 col-form-label">Chicken Maturity (Weeks)</label>
             <div className="col-sm-8 row">
-              <input type="range" className="form-control-range" name="chickenMaturity" max="100" 
+              <input type="range" className="form-control-range" name="chickenMaturity" max="16" 
                 value={this.props.data.chickenMaturity} 
                 onChange={this.props.onGraphSettingsChange} />
-              <div>{this.props.data.chickenMaturity+' Days'}</div>
-            </div>
-          </div>
-          <div className="form-group row">
-            <label className="col-sm-4 col-form-label">Waiting for the First Egg (Days)</label>
-            <div className="col-sm-8 row">
-              <input type="range" className="form-control-range" name="eggsMaturity" 
-                value={this.props.data.eggsMaturity} 
-                onChange={this.props.onGraphSettingsChange} />
-              <div>{this.props.data.eggsMaturity+' Weeks'}</div>
+              <div>{this.props.data.chickenMaturity+' Weeks' 
+                      + ' ('+(this.props.data.chickenMaturity*7)+' days)'}</div>
             </div>
           </div>
           <div className="form-group row">
@@ -183,51 +266,21 @@ export default class GraphChickenBroiler extends Component {
             </div>
           </div>
           <div className="form-group row">
+            <label className="col-sm-4 col-form-label"><strong>Graph</strong></label>
+            <div className="col-sm-8 row btn-group" role="group">
+              <button type="button" className={"btn "+ (this.props.data.graph_type===0?'btn-light':'btn-secondary')}
+                name="graph_type" value={0} onClick={this.props.onGraphSettingsChange}>Financial</button>
+              <button type="button" className={"btn "+ (this.props.data.graph_type===1?'btn-light':'btn-secondary')}
+                name="graph_type" value={1} onClick={this.props.onGraphSettingsChange}>Chicken/Food</button>
+            </div>
+          </div>
+          <div className="form-group row">
             <CanvasGraph data={dataset} key={hash(this.props.data)} />
-              <pre>
-                {
-                  JSON.stringify(this.props.data, undefined, 2)
-                }
-                <br/>
-                {
-                  JSON.stringify(dataset, undefined, 2)
-                }
-              </pre>
           </div>
   
         </React.Fragment>
       );    
     }
   
-    // data = {
-    //   labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-    //   datasets: [
-    //     {
-    //       label: '# of Votes',
-    //       data: [-12, 19, -3, 5, 2, 3],
-    //       backgroundColor: 'rgba(255, 99, 132, 0.2)',
-    //       borderColor: 'rgb(255, 99, 132)',
-    //       borderWidth: 1
-    //     },
-    //     {
-    //       label: '# of Votes',
-    //       data: [12, 19, 3, 5, 2, 3],
-    //       backgroundColor: 'rgb(54, 162, 235, 0.2)',
-    //       borderColor: 'rgb(54, 162, 235)',
-    //       borderWidth: 1
-    //     },{
-    //       label: '# of Votes',
-    //       data: [12, 19, 3, 5, 2, 3],
-    //       backgroundColor: 'rgba(255, 206, 86, 0.2)',
-    //       borderColor: 'rgb(255, 206, 86)',
-    //       borderWidth: 1
-    //     },{
-    //       label: 'Line Dataset',
-    //       data: [50, 50, 50, -12, 55, 49],
-    //       type: 'line',
-    //       backgroundColor: 'rgba(0, 0, 0, 0)',
-    //       borderColor: 'rgb(75, 192, 192)',
-    //     }
-    //   ]
-    // }
+  
   }

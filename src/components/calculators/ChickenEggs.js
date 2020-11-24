@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import GraphChickenEggs from '../graphs/GraphChickenEggs';
 import * as CalculatorsAPI from '../../api/calculators';
-import { chickenEggsFoodCfg, chickenEggsWeightCfg, chickenEggsPercentageCfg } from '../../config/calculators_config';
+import { chickenEggsPercentageCfg } from '../../config/calculators_config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLockOpen, faLock } from '@fortawesome/free-solid-svg-icons';
 

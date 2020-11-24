@@ -275,16 +275,6 @@ export default class GraphChickenEggs extends Component {
             <div>{this.props.data.chickenMaturity+' Weeks'}</div>
           </div>
         </div>
-        { // Eggs are being auto calculated from Embrapa's sheet
-        /* <div className="form-group row">
-          <label className="col-sm-4 col-form-label">Waiting for the First Egg (Weeks)</label>
-          <div className="col-sm-8 row">
-            <input type="range" className="form-control-range" name="eggsMaturity" 
-              value={this.props.data.eggsMaturity} 
-              onChange={this.props.onGraphSettingsChange} />
-            <div>{this.props.data.eggsMaturity+' Weeks'}</div>
-          </div>
-        </div> */}
         <div className="form-group row">
           <label className="col-sm-4 col-form-label">Weekly Mortality Rate (%)</label>
           <div className="col-sm-8 row">
@@ -297,11 +287,6 @@ export default class GraphChickenEggs extends Component {
         <div className="form-group row">
           <label className="col-sm-4 col-form-label"><strong>Render</strong></label>
           <div className="col-sm-8 row btn-group" role="group">
-            { // Removed due to such small time to see any results
-            /* <button type="button" className={"btn "+ (this.props.data.period===3?'btn-light':'btn-secondary')}
-              name="period" value={3} onClick={this.props.onGraphSettingsChange}>3 Month</button>
-            <button type="button" className={"btn "+ (this.props.data.period===6?'btn-light':'btn-secondary')}
-              name="period" value={6} onClick={this.props.onGraphSettingsChange}>6 Months</button> */}
             <button type="button" className={"btn "+ (this.props.data.period===12?'btn-light':'btn-secondary')}
               name="period" value={12} onClick={this.props.onGraphSettingsChange}>12 Months</button>
             <button type="button" className={"btn "+ (this.props.data.period===24?'btn-light':'btn-secondary')}
@@ -323,15 +308,6 @@ export default class GraphChickenEggs extends Component {
         </div>
         <div className="form-group row">
           <CanvasGraph data={dataset} yStack={yStack} key={hash(this.props.data)} />
-            <pre>
-              {
-                // JSON.stringify(this.props.data, undefined, 2)
-              }
-              <br/>
-              {
-                // JSON.stringify(dataset, undefined, 2)
-              }
-            </pre>
         </div>
 
       </React.Fragment>
