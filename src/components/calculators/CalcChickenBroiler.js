@@ -4,36 +4,38 @@ import * as CalculatorsAPI from '../../api/calculators';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLockOpen, faLock } from '@fortawesome/free-solid-svg-icons';
 
-import { parse } from '@fortawesome/fontawesome-svg-core';
-
 export default class CalcChickenBroiler extends Component {
     state = {
         id: 0,
-        chickens: 0,
+        description: '',
+        chickens: 100,
         area: 0,
         food: 0,
         lockedfields: [false,false,false],
-        showgraph : true,
+        showGraph : true,
 
         //** Poultry Chart State*/
         
         //** Technical Items */
-    averageweight: 0,
-    sanitationperiod : 0,
-    chickenpriceperhead : 0,
-    feedconversion : 0,
+        chickPrice: 2,
+        chickenPrice: 15,
+        averageweight: 0,
+        sanitationperiod : 0,
+        chickenpriceperhead : 0,
+        feedconversion : 0,
 
 
-    //* Expenses
-    foodPrice: 0,
-    rent: 0,
-    structurecosts: 0,
-    staff: 0,
-    chickenMaturity : 0,
-    maintenance : 0,
+        //* Expenses
+        foodPrice: 0.4,
+        rent: 40,
+        // structurecosts: 0,
+        staff: 50,
+        chickenMaturity : 12,
+        maintenance : 0,
 
-    deathRate: 0,
-    period: 12
+        deathRate: 31,
+        period: 12,
+        graph_type: 0 
   }
 
   handleForm = (e) => {
@@ -47,7 +49,7 @@ export default class CalcChickenBroiler extends Component {
     }
   }
 
-componentDidMount = async () => {
+  componentDidMount = async () => {
     if(this.props.params.id !== undefined && parseInt(this.props.params.id) > 0) {
       const calc = await CalculatorsAPI.getBroilerCalculator(parseInt(this.props.params.id));
       console.log("CALC", calc);
@@ -64,9 +66,9 @@ componentDidMount = async () => {
     // Updating Chicken Dependent Values
     this.setState(this.adjustValues('chickens', this.state.chickens));
 
-}
+  }
 
-onGraphSettingsChange = (e) => {
+  onGraphSettingsChange = (e) => {
     const { name, value } = e.target;
     let parsed = parseFloat(value);
     if(value.includes('.') && !parsed.toString().includes('.')) {
@@ -75,8 +77,7 @@ onGraphSettingsChange = (e) => {
     if(isNaN(parsed)) {
       this.setState({[name]: 0});
     } else {
-      this.setState({[name]: value});
-
+      this.setState({[name]: parsed});
     }
   }
 
@@ -122,7 +123,6 @@ onGraphSettingsChange = (e) => {
   }
 
   render() {
-    console.log(this.props);
     return(
       <React.Fragment>
          <div className="form-group row" style={{marginTop: "10px"}}>
