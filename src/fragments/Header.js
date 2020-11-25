@@ -37,7 +37,12 @@ export default class Header extends Component {
           <a className="nav-link active" id="pills-home-tab" href="/" role="tab"><FontAwesomeIcon icon={faHome} /> Home</a>
         </li>
         <li className="nav-item">
-          <a className="nav-link active" id="pills-home-tab" href="/about" role="tab"><FontAwesomeIcon icon={faAddressCard} /> About</a>
+        <NavDropdown title="About" id="basic-nav-dropdown" className="active">
+          <NavDropdown.Item href="/about">Breeds</NavDropdown.Item>
+          <NavDropdown.Item href="/about">Space Required</NavDropdown.Item>
+          <NavDropdown.Item href="/about">Chicken Nutrition</NavDropdown.Item>
+        </NavDropdown>
+          
         </li>
         <NavDropdown title="Calculators" id="basic-nav-dropdown" className="active">
           <NavDropdown.Item href="/calc/eggs">ChickenEggs</NavDropdown.Item>

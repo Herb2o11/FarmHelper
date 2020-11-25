@@ -148,7 +148,7 @@ export default class GraphChickenBroiler extends Component {
             </div>
           </div>
           <div className="form-group row">
-            <label className="col-sm-4 col-form-label">Waiting for the First Egg (Days)</label>
+            <label className="col-sm-4 col-form-label">Days Until the termination Phase (Days)</label>
             <div className="col-sm-8 row">
               <input type="range" className="form-control-range" name="eggsMaturity" 
                 value={this.props.data.eggsMaturity} 
