@@ -22,7 +22,7 @@ export async function postEggCalculator(datainfo) {
 
 export async function postBroilerCalculator(datainfo) {
   try {
-    let response = await axios.post('/broiler', datainfo);
+    let response = await axios.post('/calchickenbroiler', datainfo);
     console.log("response", response);
   } catch (error) {
     throw error;
@@ -34,7 +34,7 @@ export async function postBroilerCalculator(datainfo) {
 export async function getBroilerCalculator(id) {
   
   try {
-    let response = await axios.get('/broiler/'+id);
+    let response = await axios.get('/calchickenbroiler/'+id);
     console.log(response);
   //   let response = {
   //   "data": {
