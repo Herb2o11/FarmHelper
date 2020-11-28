@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Form, Button, Container, Spinner,  Row, Col, Alert } from 'react-bootstrap';
-import { Redirect } from 'react-router-dom';
 import * as account from '../api/account';
 
 
@@ -34,13 +33,6 @@ export default class Signup extends Component {
     }
   }
 
-  redirect = () => {
-    // if (this.state.redirect) {
-    //   return <Redirect to='/' />
-    // }
-    // return null;
-  }
-
   //User can Login pressing Enter Key instead of click the button
   keyPressed = (event) => {
     if (event.key === "Enter" && 
@@ -52,7 +44,7 @@ export default class Signup extends Component {
 
   checkPassword = (e) => {
     const { name, value } = e.target;
-    const secondField = name=='confirm_password'?this.state.password:this.state.confirm_password;
+    const secondField = name==='confirm_password'?this.state.password:this.state.confirm_password;
     if(secondField === '' || value === '') {
       this.setState({[name]: value});
     } else {

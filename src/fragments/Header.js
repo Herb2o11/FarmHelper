@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTractor, faAddressCard, faHome,faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faTractor, faHome,faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { NavDropdown} from 'react-bootstrap';
 import * as account from '../api/account';
 import { Redirect } from 'react-router-dom';

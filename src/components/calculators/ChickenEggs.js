@@ -39,8 +39,7 @@ export default class ChickenEggs extends Component {
         calc.lockedfields = locked;
       } else {
         calc.lockedfields = defautLocked;
-      } 
-      
+      }      
       this.setState(calc);
     } 
     // Updating Chicken Dependent Values
@@ -122,7 +121,7 @@ export default class ChickenEggs extends Component {
         <div className="form-group row" style={{marginTop: "10px"}}>
           <label className="col-sm-4 col-form-label">Project Description</label>
           <div className="col-sm-8">
-            <input type="text" className="form-control text-right" name="description"
+            <input type="text" className="form-control" name="description"
               value={this.state.description} 
               onChange={ (e) => this.setState({description: e.target.value})} />
           </div>

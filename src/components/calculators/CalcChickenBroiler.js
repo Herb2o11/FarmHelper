@@ -8,7 +8,7 @@ export default class CalcChickenBroiler extends Component {
     state = {
         id: 0,
         description: '',
-        chickens: 100,
+        chickens: 0,
         area: 0,
         food: 0,
         lockedfields: [false,false,false],
@@ -17,8 +17,8 @@ export default class CalcChickenBroiler extends Component {
         //** Poultry Chart State*/
         
         //** Technical Items */
-        chickPrice: 2,
-        chickenPrice: 15,
+        chickPrice: 0,
+        chickenPrice: 0,
         averageweight: 0,
         sanitationperiod : 0,
         chickenpriceperhead : 0,
@@ -26,14 +26,14 @@ export default class CalcChickenBroiler extends Component {
 
 
         //* Expenses
-        foodPrice: 0.4,
-        rent: 40,
+        foodPrice: 0,
+        rent: 0,
         // structurecosts: 0,
-        staff: 50,
-        chickenMaturity : 12,
+        staff: 0,
+        chickenMaturity : 0,
         maintenance : 0,
 
-        deathRate: 31,
+        deathRate: 0,
         period: 12,
         graph_type: 0 
   }
