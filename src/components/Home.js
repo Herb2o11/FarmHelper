@@ -40,6 +40,7 @@ export default class Home extends Component {
           
         </tr>
       );  
+      console.log (this.state.calculators)
       this.state.calculators.forEach(calc => {
         let kind = '';
         switch(calc.type) {
