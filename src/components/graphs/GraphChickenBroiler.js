@@ -235,6 +235,7 @@ export default class GraphChickenBroiler extends Component {
               <input type="range" className="form-control-range" name="chickenMaturity" max="16" 
                 value={this.props.data.chickenMaturity} 
                 onChange={this.props.onGraphSettingsChange} />
+                <div>{this.props.data.chickenMaturity+' Weeks'}</div>
             </div>
           </div>
           <div className="form-group row">
@@ -243,6 +244,7 @@ export default class GraphChickenBroiler extends Component {
               <input type="range" className="form-control-range" name="deathRate" 
                 value={this.props.data.deathRate} max="200" min = "0"
                 onChange={this.props.onGraphSettingsChange} />
+                
               <div>{this.props.data.deathRate/100+' %'}</div>
             </div>
           </div>

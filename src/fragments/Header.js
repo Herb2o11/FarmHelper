@@ -47,9 +47,7 @@ export default class Header extends Component {
         <NavDropdown title="Calculators" id="basic-nav-dropdown" className="active">
           <NavDropdown.Item href="/calc/eggs">ChickenEggs</NavDropdown.Item>
           <NavDropdown.Item href="/calc/broiler">ChickenBroiler</NavDropdown.Item>
-          <NavDropdown.Item href="/calc/quail">Quail</NavDropdown.Item>
-          <NavDropdown.Item href="/calc/rabbit">Rabbit</NavDropdown.Item>
-          <NavDropdown.Item href="/calc/fish">Fish</NavDropdown.Item>
+          
         </NavDropdown>
       </ul>
     );

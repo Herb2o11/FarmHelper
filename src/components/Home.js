@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import * as CalculatorsAPI from '../api/calculators';
 import * as AccountAPI from '../api/account';
+import Carousel from 'react-bootstrap/Carousel'
+import img_1 from '../assets/cover.JPG';
+import img_2 from '../assets/location.JPG';
+import img_3 from '../assets/production.JPG';
+import Jumbotron from 'react-bootstrap/Jumbotron'
+import Image from 'react-bootstrap/Image'
 
 export default class Home extends Component {
   
@@ -98,9 +104,57 @@ export default class Home extends Component {
       );
     } else {
       return (
-        <div style={{marginTop:'50px'}}>
-          <p>Blá,Blá,Blá,Blá,Blá,Blá,Blá</p>
-          <h3>Please, Log IN!</h3>
+        <div style={{marginTop:'0px'}}>
+          <React.Fragment>
+        <div>
+      <Jumbotron fluid>
+      
+        <h1>Farm Helper Application </h1>
+        <p>
+        Farmer Helper is an application tailored to supply the basic need of a Smal Lot farmer (Chicken Raiser),
+        providing meaningful information based on the size of their livestock. This application is recommended for a free range chickens for both modalities eggs and meat.
+        <p>This application is divided into three steps:</p> 
+        </p>
+        <div>
+          <Carousel>
+            <Carousel.Item>
+              <img
+                className="d-block w-100"
+                src={img_1}
+                alt="First slide"
+              />
+              <Carousel.Caption>
+                <h3>Pick your chicken breed</h3>
+              </Carousel.Caption>
+            </Carousel.Item>
+            <Carousel.Item>
+              <img
+                className="d-block w-100"
+                src={img_2}
+                alt="Third slide"
+              />
+              <Carousel.Caption>
+                <h3>Define the space</h3>
+              </Carousel.Caption>
+            </Carousel.Item>
+            <Carousel.Item>
+              <img
+                className="d-block w-100"
+                src={img_3}
+                alt="Third slide"
+              />
+              <Carousel.Caption>
+                <h3>Control Your Production</h3>
+              </Carousel.Caption>
+            </Carousel.Item>
+          </Carousel>
+        </div>
+    </Jumbotron>
+        </div>
+
+        
+      </React.Fragment>
+          
         </div>
       );  
     }

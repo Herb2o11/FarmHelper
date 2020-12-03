@@ -78,7 +78,7 @@ export default class ChickenEggs extends Component {
   }
 
   adjustValues = (name, value) => {
-    const relations = [ 1, 0.25, 0.12];
+    const relations = [ 1, 0.20, 0.12];
     /**
      * Each chicken corresponds to:
      * 1     chicken
