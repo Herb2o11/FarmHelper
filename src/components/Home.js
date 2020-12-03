@@ -4,7 +4,7 @@ import * as AccountAPI from '../api/account';
 import Carousel from 'react-bootstrap/Carousel'
 import img_1 from '../assets/cover.JPG';
 import img_2 from '../assets/location.JPG';
-import img_3 from '../assets/production.JPG';
+import img_3 from '../assets/control.JPG';
 import Jumbotron from 'react-bootstrap/Jumbotron'
 import Image from 'react-bootstrap/Image'
 
@@ -112,8 +112,9 @@ export default class Home extends Component {
         <h1>Farm Helper Application </h1>
         <p>
         Farmer Helper is an application tailored to supply the basic need of a Smal Lot farmer (Chicken Raiser),
-        providing meaningful information based on the size of their livestock. This application is recommended for a free range chickens for both modalities eggs and meat.
-        <p>This application is divided into three steps:</p> 
+        providing meaningful information based on the size of their livestock.
+        <p>This application is recommended for a free range chickens for both modalities eggs and poultry meat</p>
+        <p>Farmer Helper is divided into three steps below:</p> 
         </p>
         <div>
           <Carousel>
@@ -134,7 +135,7 @@ export default class Home extends Component {
                 alt="Third slide"
               />
               <Carousel.Caption>
-                <h3>Define the space</h3>
+                <h3>Define your space</h3>
               </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>
@@ -144,7 +145,7 @@ export default class Home extends Component {
                 alt="Third slide"
               />
               <Carousel.Caption>
-                <h3>Control Your Production</h3>
+                <h3>Control your Production</h3>
               </Carousel.Caption>
             </Carousel.Item>
           </Carousel>
