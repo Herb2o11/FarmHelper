@@ -12,6 +12,7 @@ import Login from './fragments/Login';
 import Signup from './fragments/Signup';
 import Home from './components/Home';
 import About from './components/About';
+import Breeds from './components/Breeds';
 import AnimalMain from './components/AnimalMain';
 import * as account from  './api/account';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -22,7 +23,8 @@ function App() {
         <Switch>
           <PublicRoute exact path="/" component={Home} />
           <PublicRoute exact path="/createLogin" component={Signup} />
-          <PublicRoute exact path="/about" component={About} />
+          <PublicRoute exact path="/about/farm" component={About} />
+          <PublicRoute exact path="/about/breeds" component={Breeds} />
           <PublicRoute exact path="/login" component={Login} />
           <PrivateRoute exact path="/calc/:animal/:id?" component={AnimalMain} />
         </Switch>

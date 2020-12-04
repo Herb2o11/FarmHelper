@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import * as CalculatorsAPI from '../api/calculators';
 import * as AccountAPI from '../api/account';
-import Carousel from 'react-bootstrap/Carousel'
+//import deleteCalculator as 
+import Carousel from 'react-bootstrap/Carousel';
 import img_1 from '../assets/cover.JPG';
 import img_2 from '../assets/location.JPG';
 import img_3 from '../assets/control.JPG';
@@ -24,6 +25,12 @@ export default class Home extends Component {
       }
       
     }
+  }
+
+  deleteButtonAction = async (id) => { 
+   await CalculatorsAPI.CalculatorDelete(id);
+   this.componentDidMount();
+
   }
 
   renderCaltulators = () => {
@@ -72,7 +79,9 @@ export default class Home extends Component {
               {calc.numberOfAnimals}
             </td>
             <td style={{textAlign:'right'}}>
-              <a href={'calc/' + calc.type + '/' + calc.id}>Select</a>
+              <a href={'calc/' + calc.type + '/' + calc.id}>Select</a> 
+              &nbsp; &nbsp;
+              <button type="button" className="btn btn-primary" onClick = {() => this.deleteButtonAction(calc.id)}>Delete</button>
             </td>
           </tr>
         );  
@@ -107,7 +116,7 @@ export default class Home extends Component {
         <div style={{marginTop:'0px'}}>
           <React.Fragment>
         <div>
-      <Jumbotron fluid>
+        <Jumbotron fluid style={{padding:"15px"}}>
       
         <h1>Farm Helper Application </h1>
         <p>

@@ -63,6 +63,13 @@ export default class GraphChickenEggs extends Component {
 
       //****************** Food
       let v_food = - (n_of_chickens * chickenEggsFoodCfg[chicken_age] * this.props.data.foodPrice);
+      // console.log({
+      //   "#":n_of_chickens,
+      //   "Age":chicken_age,
+      //   "Food QTY by Chicken": chickenEggsFoodCfg[chicken_age],
+      //   "Price": this.props.data.foodPrice,
+      //   "Valor":v_food 
+      // });
       values[3].push(v_food);
 
       

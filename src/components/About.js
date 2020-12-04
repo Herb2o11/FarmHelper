@@ -13,32 +13,32 @@ export default class About extends Component {
 
   render() {
     return (
-      <React.Fragment>
         <div>
         
-      <Jumbotron fluid>
+      <Jumbotron fluid style={{padding:"15px"}}>
       
         <h1>About Farm Helper</h1>
         <p>
-          There are essential pilars to start an chicken business.
+          These items are essential pilars to start a chicken business.
         </p>
         <div>
         <ul className="list-unstyled">
         
-		  <Media as="li"> 
-			<img
-			  width={124}
-			  height={124}
+		  <Media as="li">
+			<img style={{padding:"15px"}}
+			  width={184}
+			  height={184}
 			  className="mr-3"
 			  src={chkimagebtn}
 			  alt="Chicken Breed"
 			/>
-    
-    <Media.Body>
+			
+    <Media.Body style={{padding:"15px"}}>
 			  <h5>State the business purpose Eggs, Poultry production or dual purpose </h5>
 			  <p>
 				The business choice is essencialy related with the right breed choice. 
-				<p>The Farmer Helper provides list with the most idicated brees to start the busines, according it purpose</p>
+				<p>The Farmer Helper provides list with the most idicated brees to start the busines, 
+					according it purpose</p>
 				<p>This link will provide some indications of the best breed for your business</p>
 			  </p>
 			</Media.Body>
@@ -46,15 +46,15 @@ export default class About extends Component {
        
 		  <Media as="li">
       
-			<img
-			  width={124}
-			  height={124}
+			<img style={{padding:"15px"}}
+			  width={184}
+			  height={184}
 			  className="mr-3"
 			  src={sheed}
         alt="Generic placeholder"
 			/>
       
-			<Media.Body>
+			<Media.Body style={{padding:"15px"}}>
 			  <h5>Create a proper enviroment </h5>
 			  <p>
 				There are some basic indications of how to keep your flock, and limit the how many hens for square metters is essential to keep the flock helath.
@@ -65,14 +65,14 @@ export default class About extends Component {
 		  </Media>
 
 		  <Media as="li">
-			<img
-			  width={124}
-			  height={124}
+			<img style={{padding:"15px"}}
+			  width={184}
+			  height={184}
 			  className="mr-3"
 			  src={nutrition}
 			  alt="Generic placeholder"
 			/>
-			<Media.Body>
+			 <Media.Body style={{padding:"15px"}}>
 			  <h5>The flock nutrition</h5>
 			  <p>
 				The nutrition is a crucial point in the business, as it is responsible for a great amount of investment during the production phase.
@@ -86,8 +86,6 @@ export default class About extends Component {
     </Jumbotron>
         </div>
 
-        
-      </React.Fragment>
     );
   }
 }

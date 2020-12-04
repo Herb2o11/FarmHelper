@@ -30,28 +30,32 @@ export default class Header extends Component {
 
 
   render() {
-    
+    const userLogged = account.isAuthenticated();
+    const navCalc = userLogged
+      ?<NavDropdown title="Calculators" id="basic-nav-dropdown" className="active">
+        <NavDropdown.Item href="/calc/eggs">ChickenEggs</NavDropdown.Item>
+        <NavDropdown.Item href="/calc/broiler">ChickenBroiler</NavDropdown.Item>
+      </NavDropdown>
+      :'';
     let optionsBar = (
       <ul className="navbar-nav mr-auto">
         <li className="nav-item">
           <a className="nav-link active" id="pills-home-tab" href="/" role="tab"><FontAwesomeIcon icon={faHome} /> Home</a>
         </li>
         <li className="nav-item">
-        <NavDropdown title="About" id="basic-nav-dropdown" className="active">
-          <NavDropdown.Item href="/about">Breeds</NavDropdown.Item>
-          <NavDropdown.Item href="/about">Space Required</NavDropdown.Item>
-          <NavDropdown.Item href="/about">Chicken Nutrition</NavDropdown.Item>
-        </NavDropdown>
-          
+          <NavDropdown title="About" id="basic-nav-dropdown" className="active">
+            <NavDropdown.Item href="/about/farm">About Farm Helper</NavDropdown.Item>
+            <NavDropdown.Item href="/about/breeds">Breeds</NavDropdown.Item>
+            <NavDropdown.Item href="/about">Space Required</NavDropdown.Item>
+            <NavDropdown.Item href="/about">Chicken Nutrition</NavDropdown.Item>
+          </NavDropdown>
         </li>
-        <NavDropdown title="Calculators" id="basic-nav-dropdown" className="active">
-          <NavDropdown.Item href="/calc/eggs">ChickenEggs</NavDropdown.Item>
-          <NavDropdown.Item href="/calc/broiler">ChickenBroiler</NavDropdown.Item>
-          
-        </NavDropdown>
+        <li>
+          {navCalc}
+        </li>
       </ul>
     );
-    let loginIcon = (account.isAuthenticated()
+    let loginIcon = (userLogged
       ?<a className="nav-link" href="/" onClick={() => this.onLogOut()} id="pills-contact-tab" role="tab"><FontAwesomeIcon icon={faSignOutAlt} /> Logout</a>
       :<a className="nav-link" href="/login" id="pills-contact-tab" role="tab"><FontAwesomeIcon icon={faSignOutAlt} /> Login</a>)
     

@@ -51,6 +51,14 @@ export async function getEggChickenCalculator(id) {
   }
 }
 
+export async function CalculatorDelete(id) {
+  try {
+    let response = await axios.delete('/deleteCalculator/'+id);
+    console.log("DELETE", response);
+  } catch (error) {
+    throw error;
+  }
+} 
 
 
 ;
