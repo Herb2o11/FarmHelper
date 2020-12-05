@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import * as CalculatorsAPI from '../api/calculators';
 import * as AccountAPI from '../api/account';
-//import deleteCalculator as 
 import Carousel from 'react-bootstrap/Carousel';
 import img_1 from '../assets/cover.JPG';
 import img_2 from '../assets/location.JPG';
@@ -90,7 +89,8 @@ export default class Home extends Component {
       res.push(
         <tr key={"TRCalcNot"}>
           <td>
-            Nothing to show :/
+            
+            Please Save your project before visualize here.
           </td>
         </tr>
       );

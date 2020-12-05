@@ -61,7 +61,7 @@ export default class Signup extends Component {
   render() {
     return (
       <Container>
-        {this.redirect()}
+      
     	  <Row>
           <Col>
             <Form>
