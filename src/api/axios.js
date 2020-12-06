@@ -6,7 +6,7 @@ const axios = require('axios').default;
 // Set config defaults when creating the instance
 const instance = axios.create({
   baseURL: 'http://127.0.0.1:8080',
-  timeout: 3000,
+  timeout: 4000,
   validateStatus: function(status) {
     if(status >= 200 && status < 400 ) {
       return true;

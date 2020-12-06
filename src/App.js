@@ -16,6 +16,7 @@ import Breeds from './components/Breeds';
 import AnimalMain from './components/AnimalMain';
 import * as account from  './api/account';
 import 'bootstrap/dist/css/bootstrap.min.css';
+require('dotenv').config();
 
 function App() {
   return (
