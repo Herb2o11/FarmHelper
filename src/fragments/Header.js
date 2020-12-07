@@ -46,8 +46,7 @@ export default class Header extends Component {
           <NavDropdown title="About" id="basic-nav-dropdown" className="active">
             <NavDropdown.Item href="/about/farm">About Farm Helper</NavDropdown.Item>
             <NavDropdown.Item href="/about/breeds">Informative</NavDropdown.Item>
-            <NavDropdown.Item href="/about">Space Required</NavDropdown.Item>
-            <NavDropdown.Item href="/about">Chicken Nutrition</NavDropdown.Item>
+            
           </NavDropdown>
         </li>
         <li>

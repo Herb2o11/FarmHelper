@@ -16,10 +16,15 @@ import breedOrpington from '../assets/breedOrpington.jpg';
 import breedAustralorps from '../assets/breedAustralorps.jpg';
 import australorpData from '../assets/australorpData.JPG';
 import breedNakedneck from '../assets/breedNakedneck.jpg';
-
-
-
+import newHampshireBreed from '../assets/newHampshireBreed.JPG';
+import newHampData from '../assets/newHampData.JPG';
 import redShaver from '../assets/redShaver.jpg';
+import breedBuckeye from '../assets/breedBuckeye.jpg';
+import breedJerseyGiant from '../assets/breedJerseyGiant.jpg';
+import sheed250Birds from '../assets/sheed250Birds.JPG';
+import smallChickenCoop from '../assets/smallChickenCoop.JPG';
+import hugeModel from '../assets/hugeModel.JPG';
+
 export default class Breeds extends Component {
 
 
@@ -36,7 +41,7 @@ export default class Breeds extends Component {
               <p>
                 This section contains information about Chickens Breeds, Chicken Coop or Sheed,
                 and tips for nutrition.
-                Just click in the sections below to see the desider information
+                Just click in the sections below to see the information desired 
         </p>
               <div>
                 <Accordion defaultActiveKey="0">
@@ -49,7 +54,7 @@ export default class Breeds extends Component {
                 <div>
                           <CardDeck>
                             <Card>
-                              <Card.Img variant="top"
+                              <Card.Img variant="top"  
                                 src={breedRhodeIslandRed} />
                               <Card.Body>
                                 <Card.Title>Rhode Island Red</Card.Title>
@@ -70,7 +75,7 @@ export default class Breeds extends Component {
                                 <Card.Title>Australorp</Card.Title>
                                 <Card.Text>
                                   With maximum egg production in mind, Australians continued to develop their own distrinct breed. The breed went by many names, struggling to distinguish itself from Orpingtons, and finally settled on Australorp in the 1920s.
-                                  These birds are known for their excellent egg production. You’ll easily get 250 light brown eggs per year. The record holding hen laid 364 eggs in a 365 day period, without assistance of artificial lighting!
+                                  These birds are known for their excellent egg production. You’ll easily get 250 light brown eggs per year. The record holding hen laid 364 eggs in a 365 day period, without assistance of artificial lighting! However, they didn't get along well with other breeds.
                    {' '}
                                 </Card.Text>
                               </Card.Body>
@@ -169,7 +174,7 @@ export default class Breeds extends Component {
                       Poultry (Broiler) Breeds
                             </Accordion.Toggle>
                     <Accordion.Collapse eventKey="2">
-                      <Card.Body>This is the Pultry Breeds section.
+                      <Card.Body>This is the Poultry Breeds section.
                 <div>
                           <CardDeck>
                             <Card>
@@ -184,37 +189,35 @@ export default class Breeds extends Component {
                     </Card.Text>
                               </Card.Body>
                               <Card.Footer>
-                                <small className="text-muted">5 – 7 eggs per week.Good For Beginners</small>
+                                <small className="text-muted">Harvest time : 11-18 weeks ; Easy to keep Decent egg and meat production ; Weight (female) 4 lbs ; Weight (male) 6 lbs</small>
                               </Card.Footer>
                             </Card>
                             <Card>
-                              <Card.Img variant="top" src={redShaver} />
+                              <Card.Img variant="top" src={breedBuckeye} />
                               <Card.Body>
-                                <Card.Title>Red Shaver</Card.Title>
+                                <Card.Title>Buckeye</Card.Title>
                                 <Card.Text>
-                                  The Red Shaver is a sex-linked breed from Canada. Female chicks are a reddish-brown color with white
-                                  underfeathers, while male chicks are white with a few red markings on the feathers.
-                                  They are a dual purpose breed with a reputation for being quiet and calm. Hens
-                                  lay up to 300 large brown eggs per year! Because they are Canadian, they are very well adapted to cold.
+                                  The Buckeye breed was created by Mrs. Nettie Metcalf in Ohio in the late 19th century. In fact, the Buckeye is the only American breed of chicken developed solely by a woman. She crossed Buff Cochins and Barred Plymouth Rocks to create a large, lazy fowl, and then added some Black-Breasted Red Game birds.
+
+                                  Buckeyes are a dual-purpose breed of chicken with a lustrous red color. They have pea combs (distinguishing them from Road Island Reds), are cold-weather hardy, and adaptive to a variety of living conditions. These active, friendly birds are well-known for their abilities to hunt and catch mice!
                       {' '}
                                 </Card.Text>
                               </Card.Body>
                               <Card.Footer>
-                                <Card.Img variant="top" src={rockData} />
+                                <small className="text-muted">Harvest time : 16-21 weeks ; Excellent dual purpose Cold weather resistance ; Weight (female) 6.5 lbs ; Weight (male) 	9 lbs</small>
                               </Card.Footer>
                             </Card>
                             <Card>
-                              <Card.Img variant="top" src={breedPlymouthRock} />
+                              <Card.Img variant="top" src={breedJerseyGiant} />
                               <Card.Body>
-                                <Card.Title>Plymouth Rock</Card.Title>
+                                <Card.Title>Jersey Giant</Card.Title>
                                 <Card.Text>
-                                  Developed in America in the middle of the 19th century, this breed of chicken is historically the most popular in the United States.
-                                  Up until WWII, no other breed was kept as extensively as the Plymouth Rock. The original birds were all of the Barred variety – with black and white stripped plumage –
-                                  and other color varieties were developed later.
+                                  The Jersey Giant chicken was developed between 1870 and 1890 in New Jersey. You can probably guess that these birds are pretty big! Roosters weight in at 13 pounds, and hens can easily grow up to 10 pounds! They are the largest purebred chicken breed.
+                                  They are known to be fairly good layers compared to other large breeds, and are good winter layers. Expect about 260 large brown eggs per year
                     </Card.Text>
                               </Card.Body>
                               <Card.Footer>
-                                <small className="text-muted">Hard, Docile, </small>
+                                <small className="text-muted">Harvest time : 	16-21 weeks ; Large Slow Growth ; Weight (female)	10 lbs ; Weight (male) 13 lb</small>
                               </Card.Footer>
                             </Card>
                           </CardDeck>
@@ -262,17 +265,17 @@ export default class Breeds extends Component {
                               </Card.Footer>
                             </Card>
                             <Card>
-                              <Card.Img variant="top" src={breedPlymouthRock} />
+                              <Card.Img variant="top" src={newHampshireBreed} />
                               <Card.Body>
-                                <Card.Title>Plymouth Rock</Card.Title>
+                                <Card.Title>New Hampshire</Card.Title>
                                 <Card.Text>
-                                  Developed in America in the middle of the 19th century, this breed of chicken is historically the most popular in the United States.
-                                  Up until WWII, no other breed was kept as extensively as the Plymouth Rock. The original birds were all of the Barred variety – with black and white stripped plumage –
-                                  and other color varieties were developed later.
+                                  New Hampshire chickens have only been around since the 1930s and are closely related to the classic Rhode Island Red (RIR). Starting with RIRs, breeders were very selective and intensified traits of early maturity, rapid full feathering, and production of large brown eggs. These birds are a rich chestnut color, slightly lighter in shade than RIRs.
+
+                                  New Hampshires are a dual-purpose breed, but are intended more for the table than for egg production. They prefer to free range and are known to be competitive with the rest of the flock.
                     </Card.Text>
                               </Card.Body>
                               <Card.Footer>
-                                <small className="text-muted">Hard, Docile, </small>
+                                <Card.Img variant="top" src={newHampData} />
                               </Card.Footer>
                             </Card>
                           </CardDeck>
@@ -285,15 +288,60 @@ export default class Breeds extends Component {
                       Required Space
               </Accordion.Toggle>
                     <Accordion.Collapse eventKey="4">
-                      <Card.Body>Hello! I'm another body</Card.Body>
+                      <Card.Body> These are some Models for start the proper enviroment for you livestock
+                      <div>
+                          <CardDeck>
+                            <Card>
+                              <Card.Img variant="top"
+                                src={smallChickenCoop} />
+                              <Card.Body>
+                                <Card.Title>Chicken Coop</Card.Title>
+                                <Card.Text>
+                                  Indicated for Small amounts and familiar business. Also can be used only for backyard chicken.
+                    </Card.Text>
+                              </Card.Body>
+                              <Card.Footer>
+                              <small className="text-muted">Structure indicated for maximum 100 animals</small>
+                              </Card.Footer>
+                            </Card>
+                            <Card>
+                              <Card.Img variant="top" src={sheed250Birds} />
+                              <Card.Body>
+                                <Card.Title>Medium Sheed</Card.Title>
+                                <Card.Text>
+                                  This sheed example can give shelter for around 250 hens, which cold produce a good amount of eggs. 
+                   {' '}
+                                </Card.Text>
+                              </Card.Body>
+                              <Card.Footer>
+                              <small className="text-muted">Structure indicated for 250 in semi-enclose enviroment</small>
+                              </Card.Footer>
+                            </Card>
+                            <Card>
+                              <Card.Img variant="top" src={hugeModel} />
+                              <Card.Body>
+                                <Card.Title>Large Sheed</Card.Title>
+                                <Card.Text>
+                                  The structure indicated for those that want expand the business after the early maturity years.
+                    </Card.Text>
+                              </Card.Body>
+                              <Card.Footer>
+                              <small className="text-muted">Structure indicated for expansion</small>
+                              </Card.Footer>
+                            </Card>
+                          </CardDeck>
+                        </div>
+
+                      </Card.Body>
                     </Accordion.Collapse>
+                    
                   </Card>
                   <Card>
                     <Accordion.Toggle as={Card.Header} eventKey="5">
                       Nutrition
               </Accordion.Toggle>
                     <Accordion.Collapse eventKey="5">
-                      <Card.Body>Hello! I'm another body</Card.Body>
+                      <Card.Body>Nutrition can vary depends on your region. However,we recommend a grass feed nutrition,  complemented by organic grains if it is possible, this can increase the sales price in until 3</Card.Body>
                     </Accordion.Collapse>
                   </Card>
                 </Accordion>
