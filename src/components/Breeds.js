@@ -52,10 +52,15 @@ export default class Breeds extends Component {
                     <Accordion.Collapse eventKey="0">
                       <Card.Body>This is the Brown layer section.
                 <div>
-                          <CardDeck>
-                            <Card>
-                              <Card.Img variant="top"  
-                                src={breedRhodeIslandRed} />
+                          <CardDeck style={{ width: '1200px',
+                                            height: '800px',
+                                            marginLeft: '295px',
+                                            marginRight: '270px',
+                                            marginTop: '40px',
+                                            marginBottom: '10px'}} >
+                            <Card >
+                              <Card.Img   variant="top"  
+                                src= {breedRhodeIslandRed}  />
                               <Card.Body>
                                 <Card.Title>Rhode Island Red</Card.Title>
                                 <Card.Text>
@@ -66,7 +71,7 @@ export default class Breeds extends Component {
                     </Card.Text>
                               </Card.Body>
                               <Card.Footer>
-                                <Card.Img variant="top" src={rhodeData} />
+                                <Card.Img variant="top" src={rhodeData} /> 
                               </Card.Footer>
                             </Card>
                             <Card>
@@ -111,7 +116,12 @@ export default class Breeds extends Component {
                     <Accordion.Collapse eventKey="1">
                       <Card.Body>This is the White layer section.
                 <div>
-                          <CardDeck>
+                          <CardDeck  style={{ width: '1200px',
+                                            height: '900px',
+                                            marginLeft: '295px',
+                                            marginRight: '270px',
+                                            marginTop: '40px',
+                                            marginBottom: '10px'}} >
                             <Card>
                               <Card.Img variant="top"
                                 src={breedLeghorn} />
@@ -163,7 +173,7 @@ export default class Breeds extends Component {
                                 <Card.Img variant="top" src={cinammonData} />
                               </Card.Footer>
                             </Card>
-                          </CardDeck>
+                          </CardDeck >
                         </div>
                       </Card.Body>
 
@@ -176,7 +186,12 @@ export default class Breeds extends Component {
                     <Accordion.Collapse eventKey="2">
                       <Card.Body>This is the Poultry Breeds section.
                 <div>
-                          <CardDeck>
+                          <CardDeck style={{ width: '1200px',
+                                            height: '900px',
+                                            marginLeft: '295px',
+                                            marginRight: '270px',
+                                            marginTop: '40px',
+                                            marginBottom: '10px'}}>
                             <Card>
                               <Card.Img variant="top"
                                 src={breedNakedneck} />
@@ -217,7 +232,8 @@ export default class Breeds extends Component {
                     </Card.Text>
                               </Card.Body>
                               <Card.Footer>
-                                <small className="text-muted">Harvest time : 	16-21 weeks ; Large Slow Growth ; Weight (female)	10 lbs ; Weight (male) 13 lb</small>
+                                <small className="text-muted">Harvest time : 	16-21 weeks ; Large ,Slow Growth, indicated for free range ; Weight (female)	10 lbs ; Weight (male) 13 lb 
+                                </small>
                               </Card.Footer>
                             </Card>
                           </CardDeck>
@@ -232,7 +248,12 @@ export default class Breeds extends Component {
                     <Accordion.Collapse eventKey="3">
                       <Card.Body>This is the Dual Purpose section.
                 <div>
-                          <CardDeck>
+                          <CardDeck style={{ width: '1200px',
+                                            height: '900px',
+                                            marginLeft: '295px',
+                                            marginRight: '270px',
+                                            marginTop: '40px',
+                                            marginBottom: '10px'}}>
                             <Card>
                               <Card.Img variant="top"
                                 src={breedOrpington} />
