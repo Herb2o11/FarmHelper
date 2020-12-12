@@ -1,3 +1,81 @@
+
+![](C:\Users\herbe\Documents\Fall2020\AppliedProject\CSIS4495Project\FarmHelper_React\src\assets\cover)
+## Welcome to the FarmHelper wiki!
+
+The Farm-Helper application provides a solution for lack of information that is a cause of many small
+entrepreneurs' fails in their first attempt. The use of web application resources, which in this scenario, consists
+of gathering data from the user and transforming it into useful information to help in the decision-making. Once
+with the proper information, the user/small farmer will indicate the right path to follow, avoid
+money loss, and predict the first three years of their business's behaviour.
+
+### Technologies Used
+
+Technologies Used
+The following technologies are being for the development of this project:
+i. Front End
+* Web Application (REST)
+* Java Script
+* React JS Library (Front End)
+
+Server-side scripting
+* Java Version 11 Update 251 (Back End)
+* Java (used as API)
+* Spring Boot framework
+* Bootstrap Framework
+* React Bootstrap Framework
+* JSON (For transporting data)
+* JWT (Jason Web Token) for authentication and security
+* Apache Server
+* Hibernate
+
+iii. Database
+* MySql
+
+iv. Tools
+*  Xampp (cross-platform web server solution)
+*  Postman (It enables people to test calls to APIs)
+*  Eclipse (Integrated development environment)
+*  Maven (a build automation tool used primarily for Java projects)
+*  Axios (Axios is a popular, promise-based HTTP client that sports an easy-to-use
+*  API and can be used in both the browser and Node.js)
+*  AWS Cloud9 (a cloud-based integrated development environment (IDE) that lets
+ you write, run, and debug your code with just a browser
+
+### Screen Shots
+
+#### Home Page
+
+![](https://github.com/Herb2o11/FarmHelper/blob/master/src/assets/login.JPG)
+#### Informative Page
+
+![Info Page](https://github.com/Herb2o11/FarmHelper/blob/master/src/assets/infoPage.JPG)
+
+Brown Eggs Layer Selected
+
+![](https://github.com/Herb2o11/FarmHelper/blob/master/src/assets/example.JPG)
+
+#### Egg Production Charts
+
+
+
+#### Poultry Production Charts
+Data Inserted By the User.
+
+![](https://github.com/Herb2o11/FarmHelper/blob/master/src/assets/poultryprod1.JPG)
+
+Calculations and Chart Provided by the application.
+
+![](https://github.com/Herb2o11/FarmHelper/blob/master/src/assets/poultryprod2.JPG)
+![](https://github.com/Herb2o11/FarmHelper/blob/master/src/assets/chartBroiler.JPG)
+
+#### Demo Video
+
+
+
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
