@@ -54,8 +54,8 @@ export default class Breeds extends Component {
                 <div>
                           <CardDeck style={{ width: '1200px',
                                             height: '800px',
-                                            marginLeft: '295px',
-                                            marginRight: '270px',
+                                            marginLeft: '230px',
+                                            marginRight: '300px',
                                             marginTop: '40px',
                                             marginBottom: '10px'}} >
                             <Card >
@@ -118,7 +118,7 @@ export default class Breeds extends Component {
                 <div>
                           <CardDeck  style={{ width: '1200px',
                                             height: '900px',
-                                            marginLeft: '295px',
+                                            marginLeft: '230px',
                                             marginRight: '270px',
                                             marginTop: '40px',
                                             marginBottom: '10px'}} >
@@ -188,7 +188,7 @@ export default class Breeds extends Component {
                 <div>
                           <CardDeck style={{ width: '1200px',
                                             height: '900px',
-                                            marginLeft: '295px',
+                                            marginLeft: '230px',
                                             marginRight: '270px',
                                             marginTop: '40px',
                                             marginBottom: '10px'}}>
@@ -250,7 +250,7 @@ export default class Breeds extends Component {
                 <div>
                           <CardDeck style={{ width: '1200px',
                                             height: '900px',
-                                            marginLeft: '295px',
+                                            marginLeft: '230px',
                                             marginRight: '270px',
                                             marginTop: '40px',
                                             marginBottom: '10px'}}>
