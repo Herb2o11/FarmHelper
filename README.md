@@ -12,6 +12,7 @@ money loss, and predict the first three years of their business's behaviour.
 
 Technologies Used
 The following technologies are being for the development of this project:
+
 i. Front End
 * Web Application (REST)
 * Java Script
